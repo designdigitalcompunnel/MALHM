@@ -1,0 +1,5 @@
+Version 25 — based on approved Version 24.
+
+About page: Strengthened the deep-plum/near-black color overlay in the Why local history matters section to improve white-text contrast, retaining its approved background photo and layout.
+Both pages: Balanced header icons with identical 42px circular controls (36px on mobile); slightly reduced search symbol and slightly enlarged the theme icon while keeping theme switching nonfunctional.
+No other page structure or assets changed.

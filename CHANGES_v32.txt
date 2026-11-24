@@ -1,0 +1,1 @@
+Version 32: Changed the header CTA to one word, Explore, with an accessible Explore collections label on both pages. Kept existing button styling and navigation target; removed redundant inline arrow and second word. No other changes.

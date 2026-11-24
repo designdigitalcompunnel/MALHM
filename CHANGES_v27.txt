@@ -1,0 +1,4 @@
+Version 27 (based on Version 26)
+- About > Connecting Minnesota’s local history: removed purple tint from all six picture cards; neutral-black, bottom-only fade now protects white labels.
+- Six circular link buttons changed to solid white with dark, thicker-stroke SVG arrows, including hover/focus contrast.
+- Homepage and other About sections unchanged.

@@ -1,0 +1,2 @@
+MNCollections v20 — uses v19 as approved base.
+Added supplied ornate gold Adobe Stock PNG as an optimized transparent WebP in the negative space of the Discover MNCollections and Featured historical galleries sections. Ornament opacity 10.5% and 9% respectively, disabled on narrow displays to prevent interference. All text, imagery, geometry, layout structure and about page preserved.

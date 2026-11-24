@@ -1,0 +1,7 @@
+Version 17 built on MNCollections_MALHM_Refined_v16.
+
+1. Homepage hero overlay changed from purple wash to layered black gradients for white typography readability; hero image unchanged.
+2. Single-pixel seam below the A statewide gateway to local history curved/jagged edge removed using matching white join and disabling section borders.
+3. Removed both the Search collections text and circular arrow from the image on the Search objects card; below-image heading and description unchanged.
+4. Added a lightweight, historic line-art repeat SVG across the full footer on both pages (antique book, compass, facade, map contours) at low opacity behind existing content.
+5. Preserved layout, assets, routes, controls, and all other sections.

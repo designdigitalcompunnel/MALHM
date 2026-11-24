@@ -1,0 +1,8 @@
+Version 12 edits based on Version 11
+
+- Mirrored the homepage triceratops hero photograph horizontally without reversing the overlaid text. The image is bundled locally and preloaded.
+- Header on both pages: Search icon links to the Search Results prototype; the primary CTA is now Explore galleries. Decorative theme/accessibility icons are unchanged.
+- Access for all tab: replaced joystick image with the supplied transparent wheelchair asset.
+- History at your fingertips / Search the collections band: added the supplied helmet image as a responsive background with dark readability wash.
+- MNCollections at a glance: replaced dark statistic cards with soft lilac cards, deep-plum icon backgrounds, dark readable text and a subtle angular pattern.
+- No other page structure or content was altered. The Search Results prototype remains about.html.

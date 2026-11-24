@@ -1,0 +1,6 @@
+Version 26 | Based on Version 25
+
+About page only
+- Why local history matters: changed purple/deep-plum gradient to a neutral black gradient over the existing approved photo, ensuring legible white text.
+- Made the circular scroll CTA prominently visible: solid white circle, prominent black arrow, high contrast, defined border, accessible keyboard focus.
+- All other page structure, colors, header, footer and homepage retained.

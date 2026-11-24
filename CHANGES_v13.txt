@@ -1,0 +1,7 @@
+Version 13 edits based on Version 12
+
+- About/search page hero now uses the same photo-wash gradient treatment used on the homepage hero while preserving the existing white transition below the section.
+- In the Explore collection records mosaic, the abstract wave-line divider has been replaced by the supplied transparent parchment-scroll PNG.
+- About page collection imagery was refreshed using the newly supplied reference images, each lightly enhanced for vibrancy/clarity and placed in context-appropriate cards/sections.
+- Discover more of Minnesota now uses a full-image background with an accessible dark overlay, using the supplied parade image.
+- Homepage structure and assets remain unchanged from Version 12.

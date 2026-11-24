@@ -1,0 +1,35 @@
+Homepage image mapping verified by original uploaded filenames:
+  Search objects -> Search object.webp
+  Featured galleries discovery -> minnesota-state-capitol-1.jpg
+  Contributors introduction -> Contributors.webp
+  Minnesota places -> Minnesota places.jpg
+  Working lives -> Working lives.jpeg
+  Hennepin History Museum -> Hennepin History museum.jpg
+  Clay County Historical Society -> Clay County Historical Society.jpg
+  Douglas County Historical Society -> douglas county.webp
+  Historic towns & streets -> Historic towns & streets.jpg
+  People & communities -> People & communities.jpg
+  Maps, places & rivers -> Maps, places & rivers.webp
+  Work & everyday life -> Work & everyday life.jpg
+
+Note: Clay County Historical Society.jpeg shows a lakeshore, not the institution.
+It was not used on the institution card to avoid a visually misleading association.
+The Objects & Landscapes tile uses an illustrative crop of a prior museum-archive image,
+replacing a blurry placeholder that contained embedded screenshot text.
+Homepage hero now uses stronger full-width deep-plum overlay for accessible text.
+All changes are confined to homepage media and overlay; second page unchanged.
+Photos are illustrative website prototype assets. Their permissions were not verified here.
+
+About page media refresh (Version 13):
+  Historic streets -> user-supplied community parade photo
+  Work & community -> user-supplied community award photo
+  Logging camps -> user-supplied Valhalla cabin / outdoor camp photo
+  Historic maps -> user-supplied Map of Minnesota Territory
+  Everyday objects -> user-supplied canoe artifact photo
+  Local institutions -> user-supplied Minnesota State Capitol aerial photo
+  Visit contributors -> user-supplied Minnesota State facade photo
+  Browse by location -> user-supplied Faribault historic map
+  Explore historical objects -> user-supplied helmet artifact photo
+  Featured collection theme -> user-supplied community choir photograph
+  Decorative records divider -> user-supplied transparent parchment scroll PNG
+  Discover more of Minnesota background -> user-supplied parade photo with overlay

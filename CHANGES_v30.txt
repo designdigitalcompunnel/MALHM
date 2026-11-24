@@ -1,0 +1,1 @@
+Version 30 – About page “Why local history matters” CTA changed from oversized circular arrow button to the established pill-shaped secondary outlined button, with text “Explore more” and arrow. Navigation behaviour preserved. Other content and styling unchanged.

@@ -1,0 +1,15 @@
+Version 34 (based on Version 33)
+
+- Hero: light sweep removed; only the gentle image movement remains (both pages).
+- Typography consistency (both pages):
+  - H1 page titles uppercase on both pages.
+  - H2 section titles share one size (46px desktop).
+  - H3 feature title "Every community adds to Minnesota's story" set to the same bold weight as other titles.
+  - H3 card titles share one size (22px desktop), including institution cards and "History is for everyone".
+  - Panel and footer titles share one size (24px).
+  - Card descriptions share one size (15px).
+  - Intro body copy is 17px on desktop.
+- Apostrophes normalised to typographic ’ in all visible text.
+- Institution chips: "Museum" for Hennepin History Museum; "Historical society" for Clay and Douglas County.
+- Institution card arrow buttons align on one baseline.
+- No layout, colour, image or script changes.

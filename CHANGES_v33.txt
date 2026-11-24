@@ -1,0 +1,6 @@
+Version 33 (based on Version 32)
+
+- Hero photo on both pages now has a slow, gentle drift and breathing zoom (18s loop), plus a soft light sweep every ~9s. Uses the CSS translate/scale properties, so the existing fallback background stays visible. Disabled for users with reduced-motion settings.
+- Micro-interactions: buttons lift on hover and press in on click; the search button arrow nudges; header icons scale on hover; magnetic pull on primary buttons (pointer devices only); cards, stats and tiles lift on hover; dropdown links and text links shift on hover; tabs and segmented controls get press feedback.
+- Keyboard focus rings are clearly visible on all controls.
+- No layout, copy, colour or content changes.

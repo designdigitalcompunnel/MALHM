@@ -1,0 +1,5 @@
+Version 19 changes (based on Version 18):
+- Added a subtle separator line over the copyright row matching the existing line above the quick links.
+- Added user-provided white Website Designed by Compunnel Digital SVG on the right side of the copyright row, on both pages.
+- Responsive alignment for narrow screens.
+- All other content and styling preserved.

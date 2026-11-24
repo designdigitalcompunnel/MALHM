@@ -1,0 +1,4 @@
+Version 15: Removed baked-in purple gradient/tint from homepage museum hero image.
+The asset assets/hero-museum-triceratops-flipped.webp now uses the clean original museum photograph, horizontally flipped and cropped for 16:9 framing.
+The website retains the user-requested uniform deep-plum opacity layer in CSS for readable hero text; there is no left-right gradient treatment from the raw image.
+All homepage and second-page content, layouts, and site interactions remain as Version 14.

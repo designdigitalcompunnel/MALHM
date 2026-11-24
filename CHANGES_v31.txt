@@ -1,0 +1,31 @@
+MNCollections – Version 31 / RFP and UX content review
+
+SOURCES
+- MNCollections Redesign RFP 2026 (provided six-page PDF; sections 2–4).
+- MALHM official CollectiveAccess and general contact pages (terminology cross-check).
+- Earlier MNCollections Phase 1/2 UX strategy (search-first public discovery, contributors, galleries, accessibility).
+
+HOME PAGE: COPY CORRECTIONS
+- Reframed public discovery as published/shared records, not all private catalog data.
+- Corrected membership statistic to nearly 70 users, not 70+ participating contributors.
+- Clarified 1.5M+ cataloged objects belong to member institutions' private systems, not all in the public portal.
+- Explicitly marked WCAG 2.2 AA as an accessibility goal, not a completed certification.
+- Aligned featured galleries, search, and museum copy with the RFP scope.
+- Avoided presenting illustrative search UI as a live database.
+- Corrected prototype navigation so collection cards/CTAs don't misleadingly send users to the About page.
+- Fixed duplicate HTML ID 'discover' without altering layout.
+
+ABOUT PAGE: COPY CORRECTIONS
+- Introduced MALHM as the organization behind MNCollections.
+- Clarified that each institution determines which materials to publish publicly.
+- Explained why local history matters in concise, accessible language.
+- Stated accessibility / usability goals as work to be delivered, not features already certified.
+- Preserved the six-card mosaic, scroll accent, imagery, hero, hover, and all section layouts.
+
+IMAGERY
+- Gently increased photo vibrancy and clarity (approximately 6.5–10% color, 3% contrast, 1% brightness, 4.5% sharpness).
+- Preserved the heritage/triceratops hero treatments, text overlays, B&W archive photograph, colorized hover version, logo assets, cutouts and decorative ornaments.
+- No imagery was replaced or re-ordered.
+
+SCOPE NOTE
+This is a TWO-PAGE VISUAL PROTOTYPE, not a reimplemented CollectiveAccess system. It does not implement RFP technical requirements such as WCAG certification, real search results, contributor profiles, data synchronization controls, server installation or staff training. Those require implementation and testing, not copy alone.

@@ -1,0 +1,5 @@
+Version 16: Homepage hero media update only.
+- Replaced homepage hero image with the last user-approved cinematic Triceratops image (the version with dark black falloff at the left and right edges).
+- Preserved its built-in cinematic edge vignette instead of imposing a new gradient.
+- Reduced the existing uniform CSS tint from 64% to 30% so the approved image remains visible behind white hero text.
+- Hero height, layout, copy, CTA, other image assets, and the second page remain unchanged.

@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<title>About MNCollections | Minnesota Alliance of Local History Museums</title>
+<style>
+/* Design plan
+   Layout: sticky header, full-bleed hero, dark indigo and light bands joined by cut edges, 1200px column.
+   Color: indigo-950/900/700 (dark bands), magenta and cyan (accents), mist (light band), ink/body/muted (text).
+   Type: Josefin Sans for display, Lato for body. Text colours come from shared tokens so every section matches. */
+:root{
+  --indigo-950:#120e33; --indigo-900:#1c1650; --indigo-700:#2e2478; --indigo-500:#5140c4;
+  --magenta:#c43fd1; --cyan:#4fd2f0; --amber:#f2b84b;
+  --heading:#1a1734; --body:#4d4a68; --muted:#6e6a88;
+  --on-dark-heading:#ffffff; --on-dark-body:rgba(255,255,255,.82);
+  --mist:#f3f2fa; --line:#e4e1f0; --white:#ffffff;
+  --r-lg:22px; --r-md:14px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  --head:"Josefin Sans",system-ui,sans-serif;
+  --body-font:"Lato",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--white);color:var(--body);font:400 16px/1.6 var(--body-font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--white)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--magenta);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+.sec{padding-block:clamp(64px,9vw,120px);position:relative}
+.eyebrow{font:700 14px/1 var(--body-font);letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--head);line-height:1.08;text-wrap:balance;margin:0;color:var(--heading)}
+h2{font-size:clamp(30px,4.2vw,46px);font-weight:700}
+.copy{color:var(--body);font-size:16px;line-height:1.65;margin:0}
+.dark h1,.dark h2,.dark h3{color:var(--on-dark-heading)}
+.dark .copy,.dark p{color:var(--on-dark-body)}
+.dark .eyebrow{color:rgba(255,255,255,.7)}
+
+/* ---------- Header ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.86);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.nav.scrolled{border-color:var(--line);box-shadow:0 14px 30px -22px rgba(26,23,52,.5)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.brand{display:flex;align-items:center;gap:14px;color:var(--indigo-700);font-family:var(--head);font-weight:700;line-height:1;min-width:0}
+.brand-mark{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 10%,var(--cyan) 11% 28%,var(--magenta) 29% 56%,var(--indigo-700) 57%);transition:transform .8s var(--ease)}
+.brand:hover .brand-mark{transform:rotate(180deg)}
+.brand-text{font-size:19px;letter-spacing:.03em;text-transform:uppercase}
+.brand-text small{display:block;margin-top:4px;font:400 14px/1 var(--body-font);letter-spacing:.16em;color:var(--muted)}
+.links{display:flex;gap:30px;font-size:15px}
+.links a{position:relative;padding:6px 0;color:var(--heading);opacity:.78;transition:opacity .2s}
+.links a::after{content:"";position:absolute;inset:auto 0 0;height:2px;background:var(--indigo-700);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.links a:hover,.links a[aria-current="page"]{opacity:1}
+.links a:hover::after,.links a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.icon-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;color:var(--heading);transition:background .2s,color .2s}
+.icon-btn svg{width:22px;height:22px;transition:transform .5s var(--ease)}
+.icon-btn:hover{background:var(--mist);color:var(--indigo-700)}
+.icon-btn:hover svg{transform:scale(1.1)}
+.menu-toggle{display:none;width:42px;height:42px;border-radius:50%;place-items:center;color:var(--heading)}
+.menu-toggle svg{width:24px;height:24px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;height:46px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .35s var(--ease),background .3s,color .3s,box-shadow .3s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--indigo-700);color:#fff;box-shadow:0 14px 24px -14px rgba(46,36,120,.8)}
+.btn-primary:hover{background:var(--indigo-500);transform:translateY(-2px)}
+.btn-ghost{color:#fff;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:#fff;color:var(--indigo-700)}
+.btn-light{background:#fff;color:var(--indigo-700)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:0 14px 28px -16px #000}
+.arr{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.circle-arrow{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--indigo-700);transition:transform .4s var(--ease),background .3s,color .3s}
+.circle-arrow:hover{transform:scale(1.08);background:var(--magenta);color:#fff}
+.text-link{font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1.5px solid currentColor;padding-bottom:3px;transition:color .3s}
+.text-link:hover{color:var(--magenta)}
+
+/* ---------- Scroll reveal (CSS-only, falls back to visible) ---------- */
+@supports (animation-timeline:view()){
+  .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+}
+@keyframes rise{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+
+/* ---------- Cut edges shared by every band (same shape top and bottom) ---------- */
+.edge-top::before,.edge-bottom::after{content:"";position:absolute;left:0;right:0;height:56px;z-index:3;pointer-events:none;background:var(--edge-color,#fff)}
+.edge-top::before{top:0;clip-path:polygon(0 0,100% 0,100% 58%,90% 28%,72% 64%,50% 22%,27% 62%,8% 34%,0 60%)}
+.edge-bottom::after{bottom:0;clip-path:polygon(0 40%,8% 66%,27% 38%,50% 78%,72% 36%,90% 72%,100% 42%,100% 100%,0 100%)}
+.band{overflow:hidden}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--indigo-950);display:grid;place-items:center;text-align:center;min-height:min(680px,90svh);padding-block:clamp(80px,12vw,140px)}
+.hero-ground{position:absolute;inset:-12%;z-index:-2;background:
+  radial-gradient(40% 50% at 18% 30%,#ff6fd8b0,transparent 70%),
+  radial-gradient(45% 55% at 82% 22%,#4fd2f0a8,transparent 70%),
+  radial-gradient(50% 60% at 62% 92%,#f2b84ba8,transparent 70%),
+  linear-gradient(160deg,#2a1f6e,#120e33);
+  animation:drift 22s var(--ease) infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgba(18,14,51,.2),rgba(18,14,51,.7))}
+@keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.07)}}
+.hero h1{font-size:clamp(42px,8.4vw,104px);font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:.96;max-width:1000px;margin:18px auto 30px;color:#fff}
+.hero .lede{max-width:560px;margin:0 auto 34px;font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.92)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.word{display:inline-block;opacity:0;transform:translateY(.45em);animation:wordIn .9s var(--ease) forwards;animation-delay:calc(var(--i) * 80ms + 120ms)}
+@keyframes wordIn{to{opacity:1;transform:none}}
+
+/* ---------- Art surfaces (stand-ins for photography; swap for <img>) ---------- */
+.art{position:relative;overflow:hidden;background:#2a2360;isolation:isolate}
+.art::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(12,10,36,.55),transparent 55%)}
+.art-a{background:radial-gradient(60% 50% at 25% 30%,#4fd2f0,transparent 60%),radial-gradient(50% 60% at 80% 70%,#c43fd1,transparent 60%),linear-gradient(135deg,#0c1040,#2e2478)}
+.art-b{background:conic-gradient(from 210deg at 50% 50%,#f2b84b,#d9695f,#7b64e0,#2fb6a6,#f2b84b);animation:spin 28s linear infinite}
+@keyframes spin{to{filter:hue-rotate(360deg)}}
+.art-c{background:radial-gradient(70% 70% at 30% 20%,#ffd6f2,transparent 60%),linear-gradient(120deg,#4a2c6e,#c46a5a 60%,#f2c48b)}
+.art-d{background:radial-gradient(60% 60% at 70% 30%,#8ee3ff,transparent 65%),linear-gradient(160deg,#1f2a5c,#5b3d8f 55%,#d59a6b)}
+.art-e{background:linear-gradient(115deg,#101426,#3a2c6b 40%,#c43fd1 70%,#4fd2f0)}
+.art-f{background:radial-gradient(50% 60% at 50% 40%,#f7c873,transparent 70%),linear-gradient(180deg,#2b1b3d,#7a3b52)}
+.art-g{background:radial-gradient(55% 55% at 40% 40%,#c43fd1,transparent 70%),radial-gradient(50% 50% at 75% 70%,#4fd2f0,transparent 70%),#15113a}
+.zoom .art{transition:transform 1.2s var(--ease)}
+.zoom:hover .art{transform:scale(1.06)}
+
+/* ---------- Creating opportunities (dark band) ---------- */
+.dark{background:var(--indigo-950);color:#fff;position:relative;overflow:hidden;--edge-color:#ffffff}
+.band-head{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;position:relative;z-index:1}
+.seg{display:inline-flex;flex-wrap:wrap;gap:6px;padding:6px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.04)}
+.seg button{height:38px;padding:0 18px;border-radius:999px;color:rgba(255,255,255,.72);font-size:15px;transition:background .3s,color .3s}
+.seg button:hover{color:#fff}
+.seg button[aria-selected="true"]{background:#fff;color:var(--heading)}
+.panel-card{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-top:40px;padding:clamp(28px,4vw,52px);border:1px solid rgba(255,255,255,.14);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.01));position:relative;z-index:1}
+.swap{transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.swap.out{opacity:0;transform:translateY(14px)}
+.panel-card h3{font-size:clamp(28px,3.4vw,40px);margin-bottom:16px}
+.panel-card p{color:var(--on-dark-body);max-width:52ch}
+.panel-card .art{aspect-ratio:4/5;border-radius:22px}
+
+/* ---------- Bento tiles ---------- */
+.bento{display:grid;gap:20px;grid-template-columns:1.5fr 1fr 1fr;align-items:start}
+.bento .stack{display:grid;gap:20px}
+.cap{margin-top:14px}
+.cap h3{font-size:22px;font-weight:700}
+.cap p{margin:6px 0 0;color:var(--body);font-size:15px;max-width:34ch}
+.tile{position:relative;border-radius:var(--r-lg);overflow:hidden;color:#fff;transition:transform .6s var(--ease),box-shadow .6s}
+.tile:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(18,14,51,.6)}
+.tile .art{position:absolute;inset:0;z-index:-1}
+.tile-label{position:absolute;left:20px;right:20px;bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;font-family:var(--head);font-weight:700;font-size:clamp(20px,2.2vw,24px);text-shadow:0 2px 14px rgba(0,0,0,.3)}
+.tall{aspect-ratio:4/5}
+.wide{aspect-ratio:4/3}
+.sq{aspect-ratio:1/1}
+
+/* ---------- Stories grid & tint ---------- */
+.stories-grid{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:20px;align-items:start}
+.tint{background:linear-gradient(180deg,#fff,var(--mist) 55%,#fff)}
+
+/* ---------- Upcoming shows: full-width light band ---------- */
+.band-light{background:var(--mist);--edge-color:#ffffff}
+.shows{display:grid;grid-template-columns:.8fr 2.2fr;gap:clamp(28px,5vw,64px);align-items:center}
+.show-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.show{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 30px 50px -40px rgba(26,23,52,.6);transition:transform .5s var(--ease),box-shadow .5s;position:relative}
+.show:hover{transform:translateY(-6px);box-shadow:0 1px 0 var(--line),0 40px 60px -36px rgba(26,23,52,.6)}
+.show .art{aspect-ratio:16/10}
+.show .body{padding:18px 20px 20px;display:grid;gap:4px}
+.show time{font-size:14px;color:var(--muted)}
+.show h3{font-size:20px;font-weight:700}
+.show p{margin:0;font-size:15px;color:var(--body)}
+.show .go{justify-self:end;margin-top:14px;width:40px;height:40px;border-radius:50%;background:var(--mist);display:grid;place-items:center;color:var(--indigo-700);transition:background .3s,color .3s,transform .4s var(--ease)}
+.show:hover .go{background:var(--indigo-700);color:#fff;transform:translateX(3px)}
+.chip{position:absolute;top:14px;left:14px;z-index:2;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.9);color:var(--indigo-700);font:700 14px/1 var(--body-font);letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- Stories rail ---------- */
+.rail-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.rail-ctrl{display:flex;align-items:center;gap:14px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.rail-ctrl button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--heading);transition:background .25s,color .25s,border-color .25s}
+.rail-ctrl button:hover{background:var(--indigo-700);color:#fff;border-color:var(--indigo-700)}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}
+.rail::-webkit-scrollbar{display:none}
+.story{flex:0 0 min(300px,80%);scroll-snap-align:start;margin:0}
+.story .art{aspect-ratio:4/3;border-radius:var(--r-md);transition:transform .6s var(--ease)}
+.story:hover .art{transform:translateY(-5px)}
+.story span{display:block;margin-top:14px;font-size:15px;color:var(--body)}
+
+/* ---------- Donate (dark band) ---------- */
+.donate{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,80px);align-items:center}
+.donate .copy{color:var(--on-dark-body);opacity:1;margin-top:16px;max-width:44ch}
+.donate-card{background:#fff;color:var(--body);border-radius:24px;padding:clamp(22px,3vw,34px);box-shadow:0 40px 80px -40px #000}
+.donate-card h3{font-size:24px;margin-bottom:18px;color:var(--heading)}
+.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.amounts button,.freq button{height:46px;border-radius:14px;border:1.5px solid var(--line);font-weight:700;color:var(--heading);transition:all .25s var(--ease)}
+.amounts button:hover,.freq button:hover{border-color:var(--indigo-500)}
+.amounts button[aria-pressed="true"],.freq button[aria-pressed="true"]{background:var(--indigo-700);border-color:var(--indigo-700);color:#fff;transform:translateY(-2px)}
+.field{margin:14px 0;position:relative}
+.field label{display:block;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field input{width:100%;height:50px;border-radius:14px;border:1.5px solid var(--line);padding:0 16px;font-size:16px;color:var(--heading);transition:border-color .2s,box-shadow .2s}
+.field input:focus{outline:none;border-color:var(--indigo-500);box-shadow:0 0 0 4px #5140c41f}
+.freq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.give{width:100%;height:54px;border-radius:14px;background:var(--indigo-700);color:#fff;font-weight:700;font-size:16px;transition:background .3s,transform .3s var(--ease)}
+.give:hover{background:var(--indigo-500);transform:translateY(-2px)}
+.give:active{transform:scale(.98)}
+.secure{margin:14px 0 0;text-align:center;font-size:14px;color:var(--muted)}
+
+/* ---------- Impact: richer cards ---------- */
+.impact{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.stat{position:relative;overflow:hidden;padding:34px 26px 30px;border-radius:var(--r-lg);color:#fff;background:linear-gradient(160deg,#2e2478,#1c1650 60%,#120e33);box-shadow:0 30px 50px -40px rgba(18,14,51,.8);transition:transform .5s var(--ease),box-shadow .5s}
+.stat::before{content:"";position:absolute;width:180px;height:180px;right:-70px;top:-70px;border-radius:50%;background:radial-gradient(circle,rgba(196,63,209,.45),transparent 65%);transition:transform .8s var(--ease)}
+.stat:hover{transform:translateY(-8px);box-shadow:0 40px 60px -36px rgba(18,14,51,.9)}
+.stat:hover::before{transform:scale(1.4)}
+.stat .ico{position:relative;width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--magenta),var(--indigo-500));display:grid;place-items:center;margin-bottom:26px;transition:transform .5s var(--ease)}
+.stat:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.stat .ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.stat strong{position:relative;display:block;font-family:var(--head);font-size:clamp(40px,4.4vw,54px);line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.stat .label{position:relative;display:block;margin-top:14px;font-weight:700;font-size:15px;color:#fff}
+.stat .sub{position:relative;display:block;margin-top:6px;font-size:14px;color:rgba(255,255,255,.7)}
+
+/* ---------- About: intro + mosaic (matches the programs grid) ---------- */
+.hero-about{min-height:min(560px,82svh);padding-block:clamp(72px,10vw,120px);text-align:left;place-items:center start}
+.hero-about .wrap{width:100%}
+.hero-about h1{font-size:clamp(40px,5.8vw,72px);text-transform:none;letter-spacing:0;font-weight:700;margin:18px 0 22px;max-width:12ch;line-height:1.02}
+.hero-about .lede{margin:0 0 30px;text-align:left}
+.hero-about::after{background:linear-gradient(90deg,rgba(18,14,51,.82),rgba(18,14,51,.25) 70%,rgba(18,14,51,.1))}
+.intro-head{text-align:center;max-width:820px;margin:0 auto 52px}
+.intro-head h2{font-size:clamp(34px,4.2vw,52px);font-weight:700}
+.intro-head .copy{margin-top:16px;font-size:17px}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:312px 221px;gap:24px}
+.m{position:relative;border-radius:var(--r-lg);overflow:hidden;color:#fff;transition:transform .6s var(--ease),box-shadow .6s}
+.m:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.5)}
+.m .art{position:absolute;inset:0;z-index:-1}
+.m .tile-label{left:22px;right:22px;bottom:20px;font-size:20px}
+.m .circle-arrow{width:44px;height:44px}
+.mw{grid-column:2 / 4;grid-row:1;height:144px;align-self:start;display:grid;place-items:center}
+.mw svg{width:min(560px,100%);height:144px;overflow:visible}
+.mw path{fill:none;stroke-width:1.6;stroke-linecap:round;animation:shimmer 6s ease-in-out infinite alternate}
+@keyframes shimmer{from{transform:translateY(-3px)}to{transform:translateY(4px)}}
+.m-awards{grid-column:1;grid-row:1}
+.m-angel{grid-column:1;grid-row:2;height:221px}
+.m-donate{grid-column:2;grid-row:1 / 3;margin-top:144px;height:413px}
+.m-events{grid-column:3;grid-row:1 / 3;margin-top:144px;height:413px}
+.m-members{grid-column:4;grid-row:1}
+.m-stories{grid-column:4;grid-row:2;height:221px}
+
+/* ---------- Legacy: contained box, not full width ---------- */
+.legacy-box{position:relative;isolation:isolate;overflow:hidden;color:#fff;text-align:center;border-radius:26px;padding:clamp(64px,8vw,96px) clamp(20px,4vw,48px);margin-block:clamp(56px,7vw,90px)}
+.legacy-box::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(120deg,rgba(18,14,51,.85),rgba(46,36,120,.7)),radial-gradient(60% 60% at 20% 30%,#c43fd1,transparent 70%),radial-gradient(60% 60% at 80% 70%,#4fd2f0,transparent 70%),#15113a}
+.legacy-box h2{color:#fff;margin-bottom:16px}
+.legacy-box .copy{max-width:620px;margin:0 auto 34px;color:rgba(255,255,255,.9);font-size:clamp(17px,2vw,19px)}
+
+/* ---------- About: featured grid (wider right cards, shorter) ---------- */
+.featured-grid{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:20px;align-items:start}
+.feat-big{grid-row:1 / 3}
+.feat-big .tile{height:min(520px,70vw)}
+.feat-wide .tile{aspect-ratio:16/10}
+.feat-note{grid-column:2 / 4;border-radius:var(--r-lg);background:#e9edfa;padding:28px;position:relative;overflow:hidden}
+.feat-note .tag{position:absolute;top:22px;right:22px;padding:6px 14px;border-radius:999px;background:#fff;color:var(--indigo-700);font-size:14px;font-weight:700}
+.feat-note .ico{width:40px;height:40px;border-radius:14px;background:#fff;display:grid;place-items:center;color:var(--indigo-700);margin-bottom:22px}
+.feat-note h3{font-size:20px;margin-bottom:14px}
+.feat-note p{color:var(--body);font-size:15px;max-width:34ch;margin:0 0 26px}
+.feat-note a{font-weight:700;font-size:14px;color:var(--indigo-700);display:inline-flex;gap:6px;transition:gap .3s var(--ease)}
+.feat-note a:hover{gap:14px}
+
+/* ---------- Featured story: rounded to match the rest ---------- */
+.spotlight{display:grid;grid-template-columns:1.2fr 1fr;background:#3d3d43;color:#fff;overflow:hidden;border-radius:var(--r-lg)}
+.spotlight .art{min-height:460px;border-radius:0}
+.spot-tag{position:absolute;top:18px;left:18px;z-index:2;background:#1f5a31;color:#d6f0dc;font:700 14px/1 var(--body-font);letter-spacing:.16em;padding:7px 14px;border-radius:999px}
+.spot-copy{padding:clamp(28px,4.5vw,60px);display:flex;flex-direction:column;justify-content:center;gap:18px}
+.spot-copy time{font-size:14px;letter-spacing:.2em;color:rgba(255,255,255,.6)}
+.spot-copy h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.18;text-wrap:pretty;color:#fff}
+.spot-copy p{margin:0;color:rgba(255,255,255,.75);font-size:15px}
+.author{display:flex;align-items:center;gap:14px;margin-top:8px}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--cyan));display:grid;place-items:center;font-weight:700;font-size:14px;color:#fff}
+.author small{display:block;color:rgba(255,255,255,.6)}
+.section-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px;flex-wrap:wrap}
+.section-top .eyebrow{display:flex;align-items:center;gap:14px}
+.section-top .eyebrow::before{content:"";width:34px;height:1px;background:currentColor}
+
+/* ---------- Footer ---------- */
+.footer{position:relative;overflow:hidden;color:#fff;background:radial-gradient(70% 45% at 85% 55%,#4b2c9a66 0,transparent 70%),radial-gradient(60% 50% at 0% 100%,#2a1f6e 0,transparent 70%),linear-gradient(180deg,#221a5a 0%,#1a1548 40%,#120e33 100%);padding-top:clamp(70px,9vw,110px);--edge-color:#ffffff}
+.footer h4,.footer .news h3{color:#fff}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px)}
+.foot-grid address{font-style:normal;display:grid;gap:14px;margin-top:26px;font-size:15px;color:rgba(255,255,255,.9)}
+.foot-grid address div{display:flex;gap:14px;align-items:flex-start}
+.news h3{font-size:24px;font-weight:700}
+.news>p{margin:8px 0 18px;color:rgba(255,255,255,.85);font-size:15px}
+.news-form{display:flex;gap:14px;flex-wrap:wrap}
+.news-form input{flex:1 1 220px;min-width:0;height:50px;border-radius:999px;border:0;padding:0 20px;background:#fff;color:var(--heading)}
+.news-form input:focus{outline:3px solid var(--magenta);outline-offset:2px}
+.news-form .btn{height:50px}
+.fine{font-size:14px;color:rgba(255,255,255,.75);margin:14px 0 0;min-height:1em}
+.socials{display:flex;gap:14px;margin-top:26px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;color:#fff;transition:background .3s,color .3s,transform .4s var(--ease)}
+.socials a svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.socials a:hover{background:#fff;color:var(--indigo-700);transform:translateY(-3px)}
+.quick{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;margin-top:clamp(56px,8vw,96px);border-top:1px solid rgba(255,255,255,.12);padding-top:34px}
+.quick h4{margin:0 0 14px;font:700 18px/1 var(--head);letter-spacing:.04em}
+.quick ul{list-style:none;margin:0;padding:0;display:grid;gap:14px;font-size:15px}
+.quick a{color:rgba(255,255,255,.85);transition:color .2s}
+.quick a:hover{color:var(--cyan)}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:48px;font-size:14px;color:rgba(255,255,255,.85)}
+.foot-bottom nav{display:flex;gap:18px}
+.watermark{font-family:var(--head);font-weight:400;text-align:center;white-space:nowrap;font-size:clamp(40px,9.5vw,124px);letter-spacing:.18em;line-height:1;margin-top:clamp(48px,6vw,80px);padding-bottom:clamp(20px,3vw,36px);color:rgba(255,255,255,.12);user-select:none;overflow:hidden}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);z-index:80;background:var(--heading);color:#fff;padding:14px 20px;border-radius:14px;font-size:15px;box-shadow:0 20px 40px -20px #000;transition:transform .5s var(--ease);max-width:min(92vw,420px);text-align:center}
+.toast.show{transform:translate(-50%,0)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1000px){
+  .links{gap:20px}
+  .bento,.stories-grid{grid-template-columns:1fr 1fr}
+  .featured-grid{grid-template-columns:1fr 1fr}
+  .feat-big{grid-row:auto}
+  .feat-big .tile{height:420px}
+  .feat-note{grid-column:1 / -1}
+  .mosaic{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+  .m,.m-angel,.m-donate,.m-events,.m-stories,.m-awards,.m-members,.mw{grid-column:auto;grid-row:auto;margin-top:0;height:260px}
+  .mw{grid-column:1 / -1;height:120px}
+  .impact{grid-template-columns:repeat(2,1fr)}
+  .quick{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .menu-toggle{display:grid}
+  .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:8px max(16px,env(safe-area-inset-left,0px)) 16px;box-shadow:0 30px 40px -30px rgba(26,23,52,.4)}
+  .links.open{display:flex}
+  .links a{padding:14px 0;border-bottom:1px solid var(--line);opacity:1}
+  .links a::after{display:none}
+  .panel-card,.shows,.donate,.foot-grid,.spotlight,.band-head{grid-template-columns:1fr}
+  .band-head{align-items:flex-start}
+  .panel-card .art{aspect-ratio:16/10}
+  .show-cards{grid-template-columns:1fr 1fr}
+  .spotlight .art{min-height:280px}
+}
+@media (max-width:600px){
+  .nav-right .btn-primary{display:none}
+  .bento,.stories-grid,.featured-grid,.show-cards,.impact{grid-template-columns:1fr}
+  .quick{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .amounts{grid-template-columns:repeat(2,1fr)}
+  .story{flex-basis:82%}
+  .mosaic .m{height:240px}
+  .mw{height:100px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .word{opacity:1;transform:none}
+}
+</style>
+<meta content="Learn about MNCollections, a statewide gateway for Minnesota local history, historic photographs, objects, maps, museums and community stories. Website redesign concept." name="description"/><style>
+/* === MALHM brand application; preserve original template layout and grid classes === */
+:root{
+ --indigo-950:#320850; /* Deep Plum */
+ --indigo-900:#47106e;
+ --indigo-700:#5B1690; /* Imperial */
+ --indigo-500:#8230C0; /* Royal */
+ --magenta:#8230C0;
+ --cyan:#B078D8; /* Soft Lilac */
+ --amber:#E0C8F0;
+ --heading:#22102f;
+ --body:#403746;
+ --muted:#62536c;
+ --on-dark-heading:#fff;
+ --on-dark-body:#f6ecff;
+ --mist:#f8f4fc;
+ --line:#dfd3e7;
+ --white:#fff;
+ --head:"Josefin Sans",system-ui,sans-serif;
+ --body-font:"Lato",system-ui,sans-serif;
+}
+body{background:#fff;color:var(--body)}
+.nav{background:#fff;border-bottom:1px solid var(--line);backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav-inner{gap:18px;height:84px}
+.brand{flex-shrink:0;min-width:0;max-width:280px}
+.brand-mark,.brand-text{display:none}
+.malhm-logo{width:258px;height:auto;max-height:70px;object-fit:contain;display:block}
+.nav .links{gap:14px;align-items:center;}
+.nav .links details{position:relative;white-space:nowrap}
+.nav .links summary{list-style:none;cursor:pointer;padding:14px 6px;color:var(--heading);font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px}
+.nav .links summary::-webkit-details-marker{display:none}
+.nav .links summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);opacity:.7}
+.nav .links details[open]>summary{color:var(--indigo-700)}
+.nav .links summary:focus-visible{outline:3px solid #8230c0;outline-offset:2px}
+.dropdown-links{position:absolute;z-index:90;min-width:210px;left:-14px;top:100%;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px -25px #32085080;padding:8px;display:grid;gap:2px}
+.nav .links .dropdown-links a{display:block;color:var(--heading);padding:14px 14px;border-radius:8px;opacity:1;font-size:14px}
+.nav .links .dropdown-links a:hover{background:#f1e6fa;color:var(--indigo-700)}
+.nav .links .dropdown-links a::after{display:none}
+.nav-right{gap:7px}
+.nav-right .btn-primary{height:42px;font-size:14px;padding-inline:17px}
+.nav-right .static-icon{pointer-events:none;user-select:none;opacity:.72}
+.nav-right .static-icon svg{width:20px;height:20px}
+.nav .icon-btn{width:34px;height:34px}
+.btn-primary,.give{background:#5B1690;color:#fff}
+.btn-primary:hover,.give:hover{background:#8230C0;color:#fff}
+.btn-ghost:hover{color:#320850}
+:focus-visible{outline:3px solid #8230C0;outline-offset:3px}
+.hero{background:#320850}
+.hero-ground{background:radial-gradient(65% 75% at 82% 15%,rgba(176,120,216,.34),transparent 65%),linear-gradient(128deg,#320850 4%,#5B1690 56%,#8230C0 100%);animation:drift 22s var(--ease) infinite alternate}
+.hero::after{background:linear-gradient(90deg,rgba(22,3,43,.85) 0%,rgba(50,8,80,.58) 54%,rgba(50,8,80,.32) 100%)}
+.hero .eyebrow{color:#f2deff!important}
+.hero .lede{color:#fff}
+.dark{background:#320850}
+.tint{background:linear-gradient(180deg,#fff,#f7f1fc 50%,#fff)}
+.band-light{background:#f2e9fb}
+.seg button[aria-selected="true"]{color:#320850}
+.panel-card{background:linear-gradient(135deg,#5B16903b,#B078D80a)}
+.art{background:#5B1690}
+.art::after{background:linear-gradient(to top,rgba(28,9,37,.4),transparent 58%)}
+.real-art{background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;filter:saturate(1.13) contrast(1.045)}
+.real-art::after{z-index:0;pointer-events:none}
+.real-art>*{position:relative;z-index:1}
+.tile-label{z-index:2;text-shadow:0 2px 14px #16052180}
+.chip{background:#fff;color:#320850}
+.stat{background:linear-gradient(155deg,#5B1690,#320850)}
+.stat::before{background:radial-gradient(circle,rgba(176,120,216,.44),transparent 65%)}
+.stat .ico{background:linear-gradient(135deg,#8230C0,#5B1690)}
+.feat-note{background:#E0C8F0}
+.feat-note p{color:#30243b}
+.spotlight{background:#320850}
+.spot-tag{background:#E0C8F0;color:#320850}
+.footer{background:radial-gradient(60% 55% at 82% 58%,#8230C04a 0,transparent 72%),radial-gradient(50% 55% at 0% 100%,#5B1690 0,transparent 72%),linear-gradient(180deg,#401064,#320850 100%)}
+.footer .brand{width:max-content;max-width:min(100%,330px);background:#fff;border-radius:14px;padding:14px 15px}
+.footer .malhm-logo{width:280px;max-width:100%}
+.footer .quick a:hover{color:#E0C8F0}
+.watermark{font-size:clamp(34px,9vw,105px);letter-spacing:.12em}
+.news-form button{background:#fff;color:#320850}
+.news-form input{border:2px solid #fff}
+.search-intro{max-width:680px;margin:14px auto 0;position:relative;z-index:3}
+.search-intro form{display:flex;padding:7px;background:white;border-radius:999px;box-shadow:0 20px 45px #21032b66;gap:6px}
+.search-intro input{flex:1;min-width:0;border:0;padding:8px 18px;border-radius:999px;color:#22102f;font-size:16px;background:white}
+.search-intro input:focus-visible{outline:3px solid #8230C0;outline-offset:0}
+.search-intro button{background:#5B1690;color:white;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer}
+.search-intro button:hover{background:#8230C0}
+.search-intro .search-tip{font-size:14px;color:#f8ebff;margin:14px 0 0}
+.search-hint{font-size:14px;color:#efdef7}
+.search-filters{max-width:800px;margin:22px auto 0;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.search-filters label{font-weight:700;font-size:14px;color:#3b254d}
+.search-filters select{min-width:140px;border:1.5px solid #9b79b2;background:#fff;color:#2d173f;border-radius:14px;padding:14px 14px;font-size:15px}
+.search-summary{margin:0 auto 32px;max-width:800px;color:#5B1690;font-size:15px;font-weight:700;text-align:center}
+.record-content{position:absolute;left:14px;right:14px;bottom:14px;color:white;text-shadow:0 2px 14px #160521;font-weight:700;font-size:14px;z-index:3;pointer-events:none}
+.m .tile-label{font-size:19px}
+.m .circle-arrow{font-size:20px}
+.mosaic .mw{pointer-events:none}
+.mw svg path{stroke:#B078D8}
+.legacy-box::before{background:linear-gradient(120deg,#320850dc,#5B1690cf),radial-gradient(50% 60% at 20% 30%,#8230C0,transparent 70%),#320850}
+.legacy-box .copy{color:#fff}
+.impact .stat .sub{color:#f5e8ff}
+body .donate-card .amounts button[aria-pressed="true"],body .donate-card .freq button[aria-pressed="true"]{background:#5B1690;border-color:#5B1690;color:#fff}
+.donate-card .give{color:#fff}
+.nav a:focus-visible,.nav summary:focus-visible{outline:3px solid #8230C0}
+@media(max-width:1200px){.malhm-logo{width:216px}.nav .links{gap:5px}.nav-right .btn-primary{padding-inline:14px}}
+@media(max-width:900px){
+  .menu-toggle{display:grid}
+  .links{display:none!important;position:absolute!important;top:100%;left:0;right:0;flex-direction:column;gap:0!important;align-items:stretch!important;background:#fff;border-bottom:1px solid var(--line);padding:8px 18px 16px;box-shadow:0 25px 35px -25px #32085066;max-height:75vh;overflow:auto}
+  .links.open{display:flex!important}
+  .nav .links details{display:block;width:100%}
+  .nav .links summary{padding:14px 6px;justify-content:space-between}
+  .dropdown-links{position:static;box-shadow:none;border-radius:8px;margin-bottom:6px}
+  .nav-inner{height:74px}
+  .malhm-logo{width:222px}
+}
+@media(max-width:600px){
+  .malhm-logo{width:min(196px,55vw)}
+  .nav-right .btn-primary{display:none}
+  .nav-right .static-icon{display:none}
+  .hero h1{font-size:clamp(39px,10vw,58px)}
+  .search-intro form{border-radius:18px;flex-wrap:wrap}
+  .search-intro button{flex:1}
+  .search-intro input{width:100%;flex-basis:100%}
+  .search-filters select{max-width:100%;min-width:120px}
+  .mosaic .m{height:260px}
+  .search-summary{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.real-art{filter:saturate(1.08) contrast(1.03)}}
+
+
+
+
+
+
+
+
+
+.art-a{background:linear-gradient(135deg,#320850,#8230C0)}
+.art-b{background:linear-gradient(140deg,#5B1690,#B078D8)}
+.art-c{background:linear-gradient(130deg,#8230C0,#E0C8F0)}
+.art-d{background:linear-gradient(130deg,#320850,#5B1690)}
+.art-e{background:linear-gradient(130deg,#5B1690,#8230C0)}
+.art-f{background:linear-gradient(135deg,#5B1690,#E0C8F0)}
+.art-g{background:linear-gradient(135deg,#320850,#B078D8)}
+</style><style>
+/* === 2026 MNCollections refinement: preserves all original layout sections === */
+:root{--indigo-950:#320850;--indigo-900:#47106e;--indigo-700:#5B1690;--indigo-500:#8230C0;--magenta:#8230C0;--cyan:#B078D8;--amber:#E0C8F0;--heading:#22102f;--body:#403746;--muted:#57455f;--mist:#f8f4fc;--line:#dfd3e7}
+/* Deliberately avoid operational theme and accessibility toggles. */
+.nav-right .static-icon.theme-static{display:grid;pointer-events:none;user-select:none;opacity:1;border:1px solid #e8d9f2;background:#f9f5fc;color:#320850}
+.nav-right .static-icon.theme-static svg{width:22px;height:22px}
+.accessibility-floating{position:fixed;right:24px;bottom:24px;z-index:80;width:56px;height:56px;border-radius:50%;border:3px solid #fff;box-shadow:0 14px 30px rgba(50,8,80,.4);display:grid;place-items:center;background:#5B1690;color:white;pointer-events:none;user-select:none}
+.accessibility-floating svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nav .links details.nav-current>summary{color:#5B1690;opacity:1;border-bottom:3px solid #8230C0}
+.nav .links details.nav-current>summary::after{border-color:#5B1690}
+.nav .links summary:hover{color:#5B1690}
+/* Restore all the visible images from locally bundled assets; no online image dependencies. */
+.hero-ground{inset:0!important;background-image:url('assets/hero-home.webp')!important;background-size:cover!important;background-position:center!important;animation:drift 22s var(--ease) infinite alternate}
+.hero-about .hero-ground{background-image:url('assets/hero-results.webp')!important;background-position:center right!important}
+.hero::after{z-index:-1;background:linear-gradient(90deg,rgba(26,5,44,.94) 0%,rgba(50,8,80,.84) 46%,rgba(50,8,80,.2) 100%)!important}
+.hero-about::after{background:linear-gradient(90deg,rgba(26,5,44,.96) 0%,rgba(50,8,80,.84) 49%,rgba(50,8,80,.32) 100%)!important}
+/* Same jagged purple/white silhouette as the footer top edge */
+.hero::before{content:'';position:absolute;left:0;right:0;bottom:-1px;height:56px;z-index:4;pointer-events:none;background:#fff;clip-path:polygon(0 40%,8% 64%,27% 37%,50% 76%,72% 36%,90% 70%,100% 42%,100% 100%,0 100%)}
+.hero{padding-bottom:clamp(96px,13vw,160px)}
+.hero-about{padding-bottom:clamp(96px,11vw,143px)}
+/* Local imagery with vivid authentic-feeling color. Greyscale-on-hover examples use color sources. */
+.real-art{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;filter:saturate(1.22) contrast(1.085) brightness(1.04)!important;transition:filter .55s ease,transform 1s ease!important}
+.archive-street{background-image:url('assets/archive-street.webp')!important}
+.archive-logging{background-image:url('assets/archive-logging.webp')!important}
+.archive-boom{background-image:url('assets/archive-boom.webp')!important}
+.archive-crew{background-image:url('assets/archive-crew.webp')!important}
+.archive-logs{background-image:url('assets/archive-logs.webp')!important}
+.archive-train{background-image:url('assets/archive-train.webp')!important}
+.archive-camp{background-image:url('assets/archive-camp.webp')!important}
+.archive-portraits{background-image:url('assets/archive-portraits.webp')!important}
+.archive-bridge{background-image:url('assets/archive-bridge.webp')!important}
+.archive-museum{background-image:url('assets/archive-museum.webp')!important}
+.archive-document{background-image:url('assets/archive-document.webp')!important}
+.archive-artifacts{background-image:url('assets/archive-artifacts.webp')!important}
+/* Some archival-themed tiles deliberately start in black and white; hover/focus restores their original color. */
+.real-art.bw-hover{filter:grayscale(1) saturate(1) contrast(1.07)!important}
+.tile:hover .real-art.bw-hover,.tile:focus-within .real-art.bw-hover,.show:hover .real-art.bw-hover,.story:hover .real-art.bw-hover,.m:hover .real-art.bw-hover,.spotlight:hover .real-art.bw-hover{filter:grayscale(0) saturate(1.25) contrast(1.06)!important}
+/* Image cutout stays inside the original two-column panel, no grid changes. */
+.gateway-cutout{background:none!important;display:flex;align-items:center;justify-content:center;overflow:visible!important;isolation:auto}
+.gateway-cutout::after{display:none}
+.gateway-cutout img{width:100%;max-width:410px;max-height:465px;height:auto;object-fit:contain;filter:drop-shadow(0 15px 18px rgba(26,5,44,.25));transition:transform .6s ease}
+.gateway-cutout:hover img{transform:translateY(-5px)}
+/* Minimum text sizing; decorative labels kept readable. */
+.eyebrow,.text-link,.chip,.show time,.stat .sub,.field label,.spot-tag,.spot-copy time,.spot-copy .author small,.secure,.fine,.search-tip,.search-hint,.search-intro .search-tip,.mosaic .record-content,.footer .fine,.foot-bottom,.cap p,.feat-note .tag,.quick ul,.brand-text small{font-size:14px!important}
+/* Fine-tune shapes and size on small screens */
+@media(max-width:900px){.gateway-cutout{height:380px}.gateway-cutout img{max-height:370px}.accessibility-floating{bottom:18px;right:18px}}
+@media(max-width:600px){.hero-ground{background-position:62% center!important}.hero::after{background:linear-gradient(90deg,rgba(29,6,48,.92),rgba(50,8,80,.63))!important}.hero::before{height:38px}.accessibility-floating{width:49px;height:49px;right:14px;bottom:14px}.gateway-cutout{height:310px}.gateway-cutout img{max-height:300px}.nav-right .theme-static{display:grid!important}}
+@media(prefers-reduced-motion:reduce){.hero-ground{animation:none!important}.gateway-cutout img{transition:none!important}.real-art{transition:none!important}}
+</style><style>.accessibility-floating svg{width:34px;height:34px;stroke:#fff;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}</style><style>/* Keep important headings readable immediately, including on reduced-motion devices. */
+.split .word{opacity:1!important;transform:none!important;animation:none!important}
+</style><style>
+/* === 23 Nov 2026 targeted content refinements; original layout preserved === */
+/* Every pixel of the hero photograph receives the same translucent plum wash:
+   remove the previous strong left-to-right dark gradient. */
+.hero::after,.hero-about::after{
+  background:linear-gradient(180deg,rgba(43,9,65,.35) 0%,rgba(43,9,65,.32) 55%,rgba(43,9,65,.40) 100%)!important;
+}
+/* At the homepage hero-to-band junction, use the NEXT SECTION'S purple
+   instead of a white jagged spacer. Preserve the same signature edge profile. */
+.hero:not(.hero-about)::before{background:#320850!important;bottom:-2px!important}
+#about-project{margin-top:-1px!important}
+/* About/results page transitions to a white section, so its edge retains white. */
+.hero-about::before{background:#fff!important;bottom:-2px!important}
+/* No tiny label or empty vertical space under the search field. */
+.search-intro>.search-tip{display:none!important}
+/* The right cutout illustration keeps exactly the same dimensions and shape. */
+.gateway-cutout img{width:100%;max-width:410px;max-height:465px;object-fit:contain}
+/* The longer, more informative tab descriptions remain within the existing left column. */
+#tab-text{max-width:57ch;line-height:1.72}
+/* Decorative footer wordmark: fit the longer requested title on all devices. */
+.watermark{font-size:clamp(38px,8.2vw,108px);letter-spacing:.085em}
+@media(max-width:600px){
+  .hero::after,.hero-about::after{background:linear-gradient(180deg,rgba(43,9,65,.42),rgba(43,9,65,.4))!important}
+  .hero:not(.hero-about)::before{background:#320850!important}
+  .watermark{font-size:clamp(28px,8.4vw,44px);letter-spacing:.035em}
+}
+</style>
+<style>
+/* === Design refinements v3: preserve template layout and classes === */
+/* Homepage: 20% shorter vertical presentation, wider two-line subheading and more CTA breathing room */
+.hero:not(.hero-about){
+    min-height:min(544px,72svh);
+    padding-top:clamp(54px,6.3vw,90px);
+    padding-bottom:clamp(70px,7.6vw,102px);
+}
+.hero:not(.hero-about) h1{
+    font-size:clamp(43px,7.1vw,87px);
+    margin:14px auto 18px;
+    line-height:.97;
+}
+.hero:not(.hero-about) .lede{
+    max-width:860px;
+    font-size:clamp(17px,1.5vw,20px);
+    line-height:1.57;
+    margin:0 auto 22px;
+}
+.hero:not(.hero-about) .search-intro{margin-top:18px}
+.hero:not(.hero-about) .hero-cta{margin-top:32px}
+/* Search Results (about.html): center the heading, description and CTA in existing hero */
+.hero-about{place-items:center!important;text-align:center!important}
+.hero-about .wrap{text-align:center;width:100%}
+.hero-about h1{max-width:100%!important;margin:16px auto 20px!important;text-align:center}
+.hero-about .lede{max-width:760px!important;margin:0 auto 26px!important;text-align:center!important}
+.hero-about .btn{margin-inline:auto}
+/* Search-tip panel: remove badge/icon (in markup) and compact whitespace */
+#more .feat-note{padding:clamp(22px,2.4vw,30px)!important;align-self:start;min-height:0}
+#more .feat-note h3{margin:0 0 12px}
+#more .feat-note p{max-width:54ch;margin:0 0 20px;line-height:1.62}
+#more .feat-note a{min-height:32px;align-items:center}
+/* Footer identity, subscription form and full-width display typography */
+.footer{border-top:0!important;outline:0!important;background-clip:padding-box}
+.footer.edge-top::before{top:-2px!important;border:0!important;box-shadow:none!important}
+.footer .foot-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.footer .foot-grid>div{min-width:0}
+.footer .brand,.footer .brand:hover{
+   background:transparent!important;
+   border:0!important;
+   border-radius:0!important;
+   padding:0!important;
+   width:min(330px,100%)!important;
+   box-shadow:none!important;
+}
+.footer .malhm-logo{width:min(330px,100%);max-height:none;object-fit:contain;filter:none!important}
+.footer .news{max-width:550px;width:100%;justify-self:end}
+.footer .news h3{font-size:clamp(24px,2.2vw,30px);line-height:1.2}
+.footer .news p{color:rgba(255,255,255,.88);font-size:15px}
+.footer .news-form{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px}
+.footer .news-form input{height:52px;background:#fff;color:#22102f;border:2px solid #fff;padding:0 20px;font-size:16px;flex:1 1 210px;min-width:0;border-radius:999px}
+.footer .news-form input:focus-visible{outline:3px solid #E0C8F0;outline-offset:3px}
+.footer .news-form button{height:52px;background:#fff;color:#320850;padding:0 25px;min-width:136px;white-space:nowrap;border-radius:999px}
+.footer .news-form button:hover{background:#E0C8F0;color:#320850}
+.footer .news-message{font-size:14px!important;line-height:1.5;min-height:22px;margin:8px 0 0;color:#fff}
+.footer .quick{margin-top:clamp(45px,5vw,70px)}
+.footer .foot-bottom{justify-content:flex-start}
+.footer .watermark{width:100%;overflow:visible;white-space:nowrap;text-align:center;letter-spacing:0!important;font-size:120px!important;line-height:1;margin-bottom:0}
+.footer .watermark .watermark-fit{white-space:nowrap;display:inline-block;vertical-align:bottom;font-size:inherit;letter-spacing:.01em;font-weight:700}
+@media(max-width:900px){
+   .footer .foot-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+   .hero:not(.hero-about){padding-top:70px;padding-bottom:90px}
+   .hero:not(.hero-about) h1{font-size:clamp(48px,8vw,80px)}
+   .hero:not(.hero-about) .lede{max-width:750px}
+   .footer .news{justify-self:stretch;max-width:none}
+}
+@media(max-width:600px){
+   .hero:not(.hero-about){min-height:auto;padding-top:70px;padding-bottom:74px}
+   .hero:not(.hero-about) h1{font-size:clamp(39px,10vw,58px);margin-bottom:18px}
+   .hero:not(.hero-about) .lede{max-width:38ch;line-height:1.55;margin-bottom:22px}
+   .hero:not(.hero-about) .hero-cta{margin-top:26px}
+   .hero-about .lede{max-width:40ch!important}
+   .hero-breadcrumbs{gap:7px;font-size:14px}
+   .footer .news-form button{flex:0 0 auto;min-width:122px;padding-inline:18px}
+}
+
+
+/* v4 — Consistent card-grid spacing on the Search Results second-page section.
+   Retains the original tall-left / two-top-right / full-width-note layout. */
+#more .featured-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:auto auto;
+  align-items:stretch;
+  gap:24px;
+}
+#more .featured-grid > *{min-width:0;box-sizing:border-box}
+#more .feat-big{
+  grid-column:1;
+  grid-row:1 / span 2;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+#more .feat-big .tile{
+  flex:1 1 0;
+  height:auto;
+  min-height:0;
+  aspect-ratio:auto;
+}
+#more .feat-wide{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+#more .feat-wide .tile{width:100%;aspect-ratio:16/10}
+#more .feat-wide .cap{flex:1}
+#more .feat-note{
+  grid-column:2 / 4;
+  grid-row:2;
+  align-self:stretch!important;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:0;
+}
+@media(max-width:1000px){
+  #more .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:24px}
+  #more .feat-big{grid-column:auto;grid-row:auto}
+  #more .feat-big .tile{flex:none;height:auto;aspect-ratio:16/10}
+  #more .feat-note{grid-column:auto;grid-row:auto;align-self:stretch!important}
+}
+@media(max-width:600px){
+  #more .featured-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  #more .feat-big .tile,#more .feat-wide .tile{aspect-ratio:16/10}
+  #more .feat-note{min-height:0}
+}
+</style><link rel="preload" as="image" href="assets/hero-results.webp" type="image/webp" fetchpriority="high">
+<style id="stable-hero-photo-v7">
+/* Fix for previous drift keyframes revealing the solid fallback on page load.
+   Keep the hero photo cover-fitted and motionless in all visual states.
+   The same local image is painted on the hero itself as a robust fallback. */
+.hero:not(.hero-about) {
+  background: #320850 url('assets/hero-home.webp') center center / cover no-repeat !important;
+}
+.hero.hero-about {
+  background: #320850 url('assets/hero-results.webp') center center / cover no-repeat !important;
+}
+.hero .hero-ground,
+.hero.hero-about .hero-ground {
+  inset: -1px !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+.hero:not(.hero-about) .hero-ground {
+  background-image: url('assets/hero-home.webp') !important;
+  background-position: center center !important;
+}
+.hero.hero-about .hero-ground {
+  background-image: url('assets/hero-results.webp') !important;
+  background-position: center center !important;
+}
+@media(max-width:600px) {
+  .hero:not(.hero-about) {background-position:62% center !important}
+  .hero:not(.hero-about) .hero-ground {background-position:62% center !important}
+  .hero.hero-about {background-position:center right !important}
+  .hero.hero-about .hero-ground {background-position:center right !important}
+}
+</style>
+<style id="mncollections-v12-refinements">
+
+/* Version 12: Site-specific refinements requested by user. */
+.nav-right .header-search-icon{
+  display:grid;place-items:center;width:43px;height:43px;
+  color:#320850;border:1px solid #E0C8F0;background:#FAF5FD;
+}
+.nav-right .header-search-icon:hover,.nav-right .header-search-icon:focus-visible{color:#fff;background:#5B1690;border-color:#5B1690}
+.nav-right .header-explore{height:44px;padding-inline:19px;gap:10px}
+/* Readable history background imagery, replacing previous plain purple section fill. */
+#search-help{
+  background-color:#23142B!important;
+  background-image:linear-gradient(90deg,rgba(27,12,35,.52) 0%,rgba(27,12,35,.63) 49%,rgba(23,7,34,.77) 100%),url('assets/history-fingertips-bg.webp')!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center 40%!important;
+}
+#search-help .wrap{position:relative;z-index:2}
+#search-help h2,#search-help .eyebrow{color:#fff!important}
+#search-help .copy{color:rgba(255,255,255,.94)!important}
+/* Light, accessible at-a-glance stats; small angular motif inspired by brand geometry. */
+.impact .stat{
+  background:linear-gradient(145deg,#FAF7FC 0%,#F0E3F8 58%,#E7D2F3 100%)!important;
+  color:#320850!important;
+  border:1px solid #E3CEF0;
+  box-shadow:0 16px 36px -27px rgba(50,8,80,.22)!important;
+}
+.impact .stat::before{
+  position:absolute;inset:0!important;width:100%!important;height:100%!important;
+  right:auto!important;top:auto!important;border-radius:0!important;
+  background:linear-gradient(135deg,transparent 0 81%,rgba(91,22,144,.09) 81% 86%,transparent 86%),
+             linear-gradient(40deg,transparent 0 91%,rgba(130,48,192,.10) 91% 94%,transparent 94%)!important;
+  opacity:1;pointer-events:none;transition:none!important;
+}
+.impact .stat:hover::before{transform:none!important}
+.impact .stat .ico{
+  background:#320850!important;
+  border:1px solid rgba(91,22,144,.18);
+  box-shadow:0 10px 22px -18px rgba(50,8,80,.5);
+}
+.impact .stat .ico svg{stroke:#fff!important}
+.impact .stat strong,.impact .stat .label{color:#320850!important}
+.impact .stat .sub{color:#51445B!important}
+/* Extra halo subtly separates dark wheelchair silhouette from plum panel. */
+.gateway-cutout{background:radial-gradient(ellipse at 50% 53%,rgba(224,200,240,.30),rgba(176,120,216,.12) 45%,transparent 72%)!important}
+@media(max-width:600px){
+ #search-help{background-position:30% center!important;background-image:linear-gradient(90deg,rgba(27,12,35,.74),rgba(27,12,35,.78)),url('assets/history-fingertips-bg.webp')!important}
+ .nav-right .header-search-icon{width:40px;height:40px}
+ .nav-right .header-explore{height:40px;padding-inline:12px;font-size:14px}
+ .nav-right .header-explore .arr{display:none}
+}
+
+
+/* Keep the search icon and the collection CTA usable across common viewport widths. */
+@media(max-width:600px){
+  .nav-right .header-explore{display:inline-flex!important;gap:3px!important;padding:0 12px!important;height:40px!important;min-width:0!important}
+  .nav-right .header-explore .header-explore-wide{display:none}
+  .nav-inner{gap:8px!important}
+  .nav .malhm-logo{width:min(160px,42vw)!important}
+  .nav-right{gap:4px!important}
+  .nav-right .header-search-icon{width:36px!important;height:36px!important}
+}
+@media(max-width:360px){.nav-right .header-explore{display:none!important}}
+
+#search-help .donate-card .secure{color:#62536c!important}
+.impact .stat::before{opacity:.56!important}
+</style>
+
+<style id="mncollections-v13-about-refinements">
+/* Version 13 — About/search page media update using user-supplied imagery. */
+.hero.hero-about{background:#320850 url('assets/hero-results.webp') center center / cover no-repeat!important}
+.hero.hero-about .hero-ground{background-image:url('assets/hero-results.webp')!important;background-position:center center!important;background-size:cover!important}
+/* Match the homepage photo-wash treatment while keeping the white section transition below. */
+.hero.hero-about::after{background:linear-gradient(180deg,rgba(43,9,65,.42),rgba(43,9,65,.40))!important}
+.hero.hero-about::before{background:#fff!important}
+/* Decorative scroll replacing the earlier abstract wave line. */
+.mw{grid-column:2 / 4;grid-row:1;height:156px;display:grid;place-items:center;align-self:start;margin-top:-22px}
+.mw img{width:min(390px,90%);height:auto;display:block;filter:drop-shadow(0 18px 24px rgba(50,8,80,.22));transform:rotate(-4deg)}
+/* Discover more of Minnesota: same box, now with requested background image. */
+#search-guide .legacy-box::before{
+  background:
+    linear-gradient(120deg,rgba(18,14,51,.80),rgba(46,36,120,.66)),
+    radial-gradient(60% 60% at 20% 30%,rgba(196,63,209,.18),transparent 70%),
+    radial-gradient(60% 60% at 80% 70%,rgba(79,210,240,.14),transparent 70%),
+    url('assets/about-discover-minnesota-bg.webp') center center / cover no-repeat !important;
+}
+/* New image classes for this page so homepage assets remain untouched. */
+.about-streets{background-image:url('assets/about-historic-streets.webp')!important;background-position:center center!important}
+.about-community{background-image:url('assets/about-work-community.webp')!important;background-position:center center!important}
+.about-camp{background-image:url('assets/about-logging-camps.webp')!important;background-position:center center!important}
+.about-maps{background-image:url('assets/about-historic-maps.webp')!important;background-position:center center!important}
+.about-objects{background-image:url('assets/about-everyday-objects.webp')!important;background-position:center center!important}
+.about-institutions{background-image:url('assets/about-local-institutions.webp')!important;background-position:center center!important}
+.about-contributors{background-image:url('assets/about-visit-contributors.webp')!important;background-position:center center!important}
+.about-location{background-image:url('assets/about-browse-location.webp')!important;background-position:center center!important}
+.about-history-objects{background-image:url('assets/about-historical-objects.webp')!important;background-position:center center!important}
+.about-spotlight{background-image:url('assets/about-community-story.webp')!important;background-position:center center!important}
+@media (max-width:1000px){.mw{grid-column:1 / -1;height:126px;margin-top:-16px}.mw img{width:min(300px,88%)}}
+@media (max-width:600px){.mw{height:96px;margin-top:-10px}.mw img{width:min(238px,84%);transform:rotate(-4deg)}}
+</style>
+
+
+<style id="mncollections-v17-targeted-refinements">
+/* Homepage hero: black photographic readability gradient, no purple color wash.
+   Preserve the user-approved cinematic image and its original black vignette. */
+.hero:not(.hero-about)::after {
+  background:linear-gradient(90deg,
+    rgba(0,0,0,.36) 0%,
+    rgba(0,0,0,.50) 33%,
+    rgba(0,0,0,.58) 52%,
+    rgba(0,0,0,.48) 73%,
+    rgba(0,0,0,.34) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.16) 0%,rgba(0,0,0,.14) 55%,rgba(0,0,0,.25) 100%)!important;
+  background-color:transparent!important;
+}
+/* Remove the one-pixel seam after the gateway section's zigzag/curved bottom edge. */
+#about-project.edge-bottom{border-bottom:0!important;outline:none!important;box-shadow:none!important}
+#discover{border-top:0!important;outline:none!important;box-shadow:none!important}
+#discover::before{
+  content:"";position:absolute;z-index:4;pointer-events:none;
+  left:0;right:0;top:-3px;height:5px;background:#fff;
+}
+/* Subtle archive-themed line illustrations repeat across the entire footer,
+   below all content so text and form contrast is never compromised. */
+.footer::after {
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url('assets/footer-history-pattern.svg');
+  background-repeat:repeat;
+  background-size:720px 460px;
+  background-position:center top;
+  opacity:.04;
+}
+.footer > .wrap{position:relative;z-index:1}
+.footer.edge-top::before{z-index:3}
+@media(max-width:600px){
+ .hero:not(.hero-about)::after {
+  background:linear-gradient(90deg,rgba(0,0,0,.51),rgba(0,0,0,.59) 50%,rgba(0,0,0,.45)),
+             linear-gradient(180deg,rgba(0,0,0,.20),rgba(0,0,0,.13) 55%,rgba(0,0,0,.28))!important;
+ }
+ .footer::after{background-size:480px 307px;opacity:.034}
+}
+</style>
+
+
+<style id="v19-footer-copyright-credit">
+/* Match the visual separator already used above the footer navigation. */
+.footer .foot-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between!important;
+  flex-wrap:nowrap;
+  gap:28px;
+  border-top:1px solid rgba(255,255,255,.12);
+  margin-top:clamp(40px,5vw,62px);
+  padding-top:26px;
+  width:100%;
+}
+.footer .foot-bottom > span{
+  display:block;
+  flex:1 1 auto;
+  min-width:0;
+  line-height:1.65;
+}
+.footer .foot-bottom .foot-designer{
+  flex:0 0 200px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  text-decoration:none;
+}
+.footer .foot-bottom .foot-designer img{
+  display:block;
+  height:40px;
+  width:200px;
+  max-width:100%;
+  object-fit:contain;
+  object-position:right center;
+}
+@media (max-width:760px){
+ .footer .foot-bottom{flex-wrap:wrap;align-items:flex-start;gap:20px;padding-top:22px;}
+ .footer .foot-bottom > span{flex:1 1 100%;}
+ .footer .foot-bottom .foot-designer{flex:0 0 200px;justify-content:flex-start;}
+ .footer .foot-bottom .foot-designer img{object-position:left center;}
+}
+</style>
+<style id="v21-about-content-alignment">
+/* Content-only refocus of the second page; preserves established typography, palette and grids. */
+#mission .intro-head{margin-bottom:clamp(28px,3.2vw,44px)}
+#mission .intro-head .copy{max-width:850px;margin-inline:auto}
+#mission .mosaic .tile-label span:first-child{max-width:85%;line-height:1.2}
+.about-institutions{background-image:url('assets/home-contributors-overview.webp')!important}
+.about-contributors{background-image:url('assets/home-contributor-hennepin.webp')!important}
+@media(max-width:600px){#mission .mosaic .tile-label span:first-child{max-width:80%}}
+</style>
+
+<style id="v22-about-hero-and-mission-tweaks">
+/* v22: about hero image update + readability improvements for mission mosaic */
+.hero.hero-about{background:#320850 url('assets/about-hero-gallery.jpg') center center / cover no-repeat!important}
+.hero.hero-about .hero-ground{background-image:url('assets/about-hero-gallery.jpg')!important;background-position:center center!important;background-size:cover!important}
+.hero.hero-about::after{background:linear-gradient(90deg,rgba(18,14,51,.78) 0%,rgba(18,14,51,.42) 52%,rgba(18,14,51,.22) 100%)!important}
+@media (max-width: 760px){
+  .hero.hero-about::after{background:linear-gradient(180deg,rgba(18,14,51,.66),rgba(18,14,51,.44))!important}
+}
+#mission .m .art::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(50,8,80,.92) 0%, rgba(91,22,144,.78) 26%, rgba(91,22,144,.38) 52%, rgba(91,22,144,0) 78%);
+  z-index:0;
+}
+#mission .m .tile-label{color:#fff;text-shadow:0 3px 18px rgba(18,14,51,.55)}
+#mission .m .tile-label .circle-arrow{background:rgba(255,255,255,.18);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.mw img{width:min(312px,72%);height:auto;display:block;filter:drop-shadow(0 18px 24px rgba(50,8,80,.22));transform:rotate(30deg)}
+@media (max-width:1000px){.mw img{width:min(250px,72%);transform:rotate(30deg)}}
+@media (max-width:600px){.mw img{width:min(190px,70%);transform:rotate(30deg)}}
+</style>
+
+
+<style id="v23-why-history-matters-bg">
+#why-it-matters .legacy-box::before{
+  background:
+    linear-gradient(120deg, rgba(18,14,51,.72), rgba(91,22,144,.58)),
+    linear-gradient(0deg, rgba(18,14,51,.30), rgba(18,14,51,.10)),
+    url('assets/about-why-history-matters.jpg') center center / cover no-repeat !important;
+}
+</style>
+
+
+<style id="v24-about-visual-refinements">
+/* Black overlay to strengthen legibility without replacing the selected museum-gallery photo. */
+.hero.hero-about::after{
+  background:linear-gradient(rgba(0,0,0,.26),rgba(0,0,0,.26)),
+             linear-gradient(90deg,rgba(18,14,51,.72),rgba(18,14,51,.38)) !important;
+}
+/* The recently added heritage photograph in Why local history matters also receives a dark overlay. */
+#why-it-matters .legacy-box::before{
+  background:linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.52)),
+             url('assets/about-why-history-matters.jpg') center center/cover no-repeat !important;
+}
+#mission .intro-head .copy{max-width:850px;line-height:1.6;margin-inline:auto}
+/* Six mosaic images: deeper brand-purple fade from bottom to safeguard white labels and arrows. */
+#mission .m .art::after{
+  background:linear-gradient(to top,
+    rgba(30,4,48,.98) 0%,
+    rgba(50,8,80,.96) 24%,
+    rgba(91,22,144,.75) 44%,
+    rgba(91,22,144,.29) 70%,
+    transparent 91%) !important;
+  z-index:0;
+}
+#mission .m .tile-label{position:absolute;z-index:2;text-shadow:0 2px 12px rgba(0,0,0,.52)}
+/* Organization's Minnesota silhouette as a minimal brand-derived watermark, right of note. */
+#more .feat-note::after{
+  content:"";
+  position:absolute;
+  top:50%;right:clamp(16px,3vw,35px);
+  width:clamp(115px,15vw,175px);
+  aspect-ratio:350/410;
+  transform:translateY(-50%);
+  background:url('assets/about-minnesota-map-watermark.png') center/contain no-repeat;
+  opacity:.105;
+  pointer-events:none;
+}
+#more .feat-note > *{position:relative;z-index:1}
+/* True file-to-file hover transition: B&W archival image remains the initial state. */
+.about-spotlight{position:relative;isolation:isolate;background-image:url('assets/about-community-story.webp')!important}
+.about-spotlight::before{
+  content:"";
+  position:absolute;inset:0;
+  background:url('assets/about-community-story-colorized.webp') center/cover no-repeat;
+  opacity:0;
+  z-index:0;
+  pointer-events:none;
+  transition:opacity .65s ease;
+}
+.spotlight:hover .about-spotlight::before,
+.spotlight:focus-within .about-spotlight::before{opacity:1}
+.about-spotlight .spot-tag{z-index:2}
+@media (prefers-reduced-motion:reduce){.about-spotlight::before{transition:none}}
+@media (max-width:760px){
+ .hero.hero-about::after{background:rgba(0,0,0,.48)!important}
+ #more .feat-note::after{width:120px;right:14px;opacity:.08}
+}
+</style>
+
+<style id="v25-balanced-header-icons">
+/* Equal-size icon controls, with optically balanced search and theme glyphs. */
+.nav-right .header-search-icon,
+.nav-right .static-icon.theme-static{
+  box-sizing:border-box;
+  flex:0 0 42px;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+}
+/* The magnifier was visually dominant; reduce it slightly. */
+.nav-right .header-search-icon svg{width:19px;height:19px;stroke-width:1.9}
+/* Increase the moon-and-stars glyph to match the perceived icon weight. */
+.nav-right .static-icon.theme-static svg{width:25px;height:25px}
+@media(max-width:600px){
+ .nav-right .header-search-icon,
+ .nav-right .static-icon.theme-static{
+   flex-basis:36px;
+   width:36px!important;
+   height:36px!important;
+ }
+ .nav-right .header-search-icon svg{width:18px;height:18px}
+ .nav-right .static-icon.theme-static svg{width:23px;height:23px}
+}
+</style>
+
+<style id="v25-why-history-readable-overlay">
+/* Stronger deep-plum/near-black wash over the existing approved heritage photograph. */
+#why-it-matters .legacy-box::before{
+  background:
+    linear-gradient(105deg,
+      rgba(16,5,25,.84) 0%,
+      rgba(35,8,52,.78) 47%,
+      rgba(25,7,38,.68) 100%),
+    url('assets/about-why-history-matters.jpg') center center / cover no-repeat !important;
+}
+#why-it-matters .legacy-box h2{color:#fff}
+#why-it-matters .legacy-box .copy{color:rgba(255,255,255,.98)}
+</style>
+
+<style id="v26-black-history-gradient-and-cta">
+/* A neutral black readability fade, retaining the original color photograph. */
+#why-it-matters .legacy-box::before{
+  background:
+    linear-gradient(105deg,
+      rgba(0,0,0,.77) 0%,
+      rgba(0,0,0,.66) 47%,
+      rgba(0,0,0,.57) 100%),
+    url('assets/about-why-history-matters.jpg') center center / cover no-repeat !important;
+}
+/* Use the same pill-shaped outlined secondary CTA as the About hero. */
+#why-it-matters .legacy-box #legacy-play {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto;
+  padding:0 22px;
+  min-height:46px;
+  border:1.5px solid rgba(255,255,255,.85);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+#why-it-matters .legacy-box #legacy-play:hover,
+#why-it-matters .legacy-box #legacy-play:focus-visible {
+  background:#fff;
+  color:#320850;
+}
+#why-it-matters .legacy-box #legacy-play:focus-visible {
+  outline:3px solid #fff;
+  outline-offset:4px;
+}
+</style>
+
+
+<style id="v27-about-natural-images-and-visible-arrows">
+/* Six About-page cards: neutral BLACK fade, no brand-purple tint on the photographs. */
+#mission .m .art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.92) 0%,
+    rgba(0,0,0,.74) 21%,
+    rgba(0,0,0,.40) 43%,
+    rgba(0,0,0,.12) 63%,
+    rgba(0,0,0,0) 83%) !important;
+}
+#mission .m .tile-label {
+  z-index: 3;
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.74);
+}
+/* Opaque white icon circles, with high-contrast, deliberate-width arrow artwork. */
+#mission .m .tile-label .circle-arrow {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 4;
+  border: 1px solid rgba(255,255,255,.92);
+  border-radius: 50%;
+  background: #fff !important;
+  color: #241328 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow: none !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,.24);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background-color .25s ease, color .25s ease, transform .25s ease;
+}
+#mission .m .tile-label .circle-arrow svg {
+  display: block;
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#mission .m:hover .tile-label .circle-arrow,
+#mission .m:focus-visible .tile-label .circle-arrow {
+  background: #320850 !important;
+  color: #fff !important;
+  border-color: #fff;
+  transform: translateX(2px);
+}
+@media (max-width:600px) {
+  #mission .m .tile-label .circle-arrow {flex-basis: 44px; width:44px; height:44px;}
+  #mission .m .tile-label .circle-arrow svg {width:23px;height:23px;}
+}
+@media (prefers-reduced-motion: reduce) {
+  #mission .m .tile-label .circle-arrow {transition:none;}
+}
+
+<style id="v29-about-local-heritage-visible-fix">
+/* Make the Local heritage image more visible by removing the heavy card wash. */
+#mission .m-events .art::after{
+  background:none !important;
+}
+/* Keep the label readable on that specific card using text contrast instead of a heavy overlay. */
+#mission .m-events .tile-label{
+  color:#fff !important;
+  text-shadow:0 3px 12px rgba(0,0,0,.82), 0 1px 2px rgba(0,0,0,.85);
+}
+/* Make all circular link buttons more visible and crisp. */
+#mission .m .tile-label .circle-arrow{
+  width:54px !important;
+  height:54px !important;
+  flex-basis:54px !important;
+  background:#ffffff !important;
+  color:#241328 !important;
+  border:1.5px solid rgba(255,255,255,.98) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.34) !important;
+}
+#mission .m .tile-label .circle-arrow svg{
+  width:26px !important;
+  height:26px !important;
+  stroke:currentColor !important;
+  stroke-width:2.8 !important;
+}
+@media (max-width:600px){
+  #mission .m .tile-label .circle-arrow{width:50px !important;height:50px !important;flex-basis:50px !important;}
+  #mission .m .tile-label .circle-arrow svg{width:24px !important;height:24px !important;}
+}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+<div class="wrap nav-inner">
+<a aria-label="Minnesota Alliance of Local History Museums – MNCollections" class="brand" href="index.html"><img alt="Minnesota Alliance of Local History Museums" class="malhm-logo" src="assets/malhm-logo-transparent-hd.png"/></a>
+<nav aria-label="Primary" class="links" id="links"><details class="nav-dropdown"><summary>Explore</summary><div class="dropdown-links"><a href="index.html#discover">Discover</a><a href="index.html#galleries">Galleries</a><a href="index.html#hero-search">Search collections</a></div></details><details class="nav-dropdown"><summary>Contributors</summary><div class="dropdown-links"><a href="index.html#contributors">Directory</a><a href="index.html#contributors">Institutions</a></div></details><details class="nav-dropdown"><summary>Galleries</summary><div class="dropdown-links"><a href="index.html#galleries">Featured</a><a href="index.html#stories">Themes</a></div></details><details class="nav-dropdown nav-current"><summary aria-current="page">About</summary><div class="dropdown-links"><a href="about.html">MNCollections</a><a href="index.html#about-project">MALHM</a></div></details><details class="nav-dropdown"><summary>Help</summary><div class="dropdown-links"><a href="about.html#why-it-matters">Our purpose</a><a href="index.html#about-project">Accessibility</a><a href="index.html#footer">Contact</a></div></details></nav>
+<div class="nav-right"><a aria-label="Go to homepage collection search" class="icon-btn header-search-icon" href="index.html#hero-search" title="Search collections"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 5 5"></path></svg></a><a class="btn btn-primary magnetic header-explore" href="index.html#discover" aria-label="Explore collections"><span>Explore</span></a><span aria-hidden="true" class="icon-btn static-icon theme-static" title="Color theme icon — decorative only"><svg aria-hidden="true" viewbox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M208 152a80 80 0 0 1-104-104A80 80 0 1 0 208 152Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="15"></path><path d="M190 29v30m-15-15h30M226 79v22m-11-11h22" stroke="currentColor" stroke-linecap="round" stroke-width="13"></path></svg></span><button aria-controls="links" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menu"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>
+</div>
+</header>
+<main id="view-about">
+<section aria-labelledby="about-title" class="hero hero-about">
+<div aria-hidden="true" class="hero-ground"></div>
+<div class="wrap">
+<p class="eyebrow rv">About Minnesota’s shared history</p>
+<h1 class="split" id="about-title">About MNCollections</h1>
+<p class="lede">Created by the Minnesota Alliance of Local History Museums, MNCollections helps people discover historical records shared by organizations statewide.</p>
+<a class="btn btn-ghost magnetic" href="#mission">Explore our purpose <span aria-hidden="true">↓</span></a>
+</div>
+</section>
+<section aria-labelledby="platform" class="sec" id="mission">
+<div class="wrap">
+<div class="intro-head rv">
+<h2 id="platform">Connecting Minnesota’s local history</h2>
+<p class="copy">Explore published photographs, objects, maps and local stories from Minnesota museums and historical organizations.</p>
+</div>
+<div class="mosaic" aria-label="What MNCollections helps people discover">
+<a aria-label="Places and neighborhoods — explore local heritage" class="m m-awards rv zoom" href="#why-it-matters"><div aria-label="Minnesota community gathering" class="art real-art about-streets" role="img"></div><div class="tile-label"><span>Places &amp; neighborhoods</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+<div aria-hidden="true" class="mw rv"><img alt="" src="assets/about-records-scroll.png"/></div>
+<a aria-label="People and communities — explore shared stories" class="m m-donate rv zoom" href="#related"><div aria-label="Minnesota community history group" class="art real-art about-community" role="img"></div><div class="tile-label"><span>People &amp; communities</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+<a aria-label="Local heritage — discover regional traditions" class="m m-events rv zoom" href="#why-it-matters"><div aria-label="Historic-style woodland cabin in Minnesota" class="art real-art about-camp" role="img"></div><div class="tile-label"><span>Local heritage</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+<a aria-label="Maps and archives — explore places through time" class="m m-members rv zoom" href="#more"><div aria-label="Antique map of Minnesota Territory" class="art real-art about-maps" role="img"></div><div class="tile-label"><span>Maps &amp; archives</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+<a aria-label="Objects and artifacts — explore material culture" class="m m-angel rv zoom" href="#more"><div aria-label="Historical canoe exhibited in a museum" class="art real-art about-objects" role="img"></div><div class="tile-label"><span>Objects &amp; artifacts</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+<a aria-label="Museums and partners — discover contributing institutions" class="m m-stories rv zoom" href="#more"><div aria-label="Minnesota History Center, an institution preserving regional history" class="art real-art about-institutions" role="img"></div><div class="tile-label"><span>Museums &amp; partners</span><span aria-hidden="true" class="circle-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div></a>
+</div>
+</div>
+</section>
+<section aria-labelledby="legacy-h" class="wrap" id="why-it-matters">
+<div class="legacy-box rv">
+<h2 id="legacy-h">Why local history matters</h2>
+<p class="copy">Photographs, maps and everyday objects connect Minnesotans with the people and places that shaped their communities. Making these records easier to discover helps keep local stories visible.</p>
+<button aria-label="Explore more about Minnesota’s local history" class="btn btn-ghost magnetic" id="legacy-play" type="button">Explore more <span aria-hidden="true" class="arr">→</span></button>
+</div>
+</section>
+<section aria-labelledby="feat-h" class="sec" id="more" style="padding-top:0">
+<div class="wrap">
+<div class="featured-grid">
+<div class="rv feat-big"><div class="tile"><div aria-label="Hennepin History Museum building" class="art real-art about-contributors" role="img"></div></div><div class="cap"><h3>Local museums, shared stories</h3><p>Local museums and historical societies preserve collections and choose which records they share for public discovery.</p></div></div>
+<div class="rv feat-wide"><div class="tile"><div aria-label="Historic bird's-eye map of Faribault" class="art real-art about-location" role="img"></div></div><div class="cap"><h3>Places across Minnesota</h3><p>Maps, photographs and records reveal how Minnesota towns, neighborhoods and landscapes have changed over time.</p></div></div>
+<div class="rv feat-wide"><div class="tile"><div aria-label="Historical helmet artifact on display" class="art real-art about-history-objects" role="img"></div></div><div class="cap"><h3>Objects with a story</h3><p>Everyday artifacts and historic documents reveal the experiences of people and communities over time.</p></div></div>
+<div class="feat-note rv">
+<h3 id="feat-h">History is for everyone</h3>
+<p>The redesign aims for clearer navigation, more usable collection searches and WCAG 2.2 Level AA accessibility for researchers, families and lifelong learners.</p>
+<a href="index.html#discover">Explore MNCollections →</a>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="story-h" class="sec tint" id="related" style="padding-top:clamp(48px,6vw,80px)">
+<div class="wrap">
+<div class="section-top rv"><p class="eyebrow">LOCAL HISTORY, SHARED STORIES</p><a class="text-link" href="index.html#stories">Explore stories</a></div>
+<article class="spotlight rv">
+<div aria-label="Historic community choir photograph" class="art real-art about-spotlight" role="img"><span class="spot-tag">COMMUNITY HISTORY</span></div>
+<div class="spot-copy">
+<time>MINNESOTA · COMMUNITY MEMORY</time>
+<h3 id="story-h">Every community adds to Minnesota’s story</h3>
+<p>Minnesota history lives in people’s work, gatherings, traditions and everyday experiences. Records that institutions choose to publish help more people explore and learn from those community stories.</p>
+</div>
+</article>
+</div>
+</section>
+</main>
+<footer class="footer edge-top" id="footer" style="--edge-color:#ffffff">
+<div class="wrap">
+<div class="foot-grid">
+<div>
+<a aria-label="Minnesota Alliance of Local History Museums – MNCollections" class="brand" href="index.html" style="color:#fff"><img alt="Minnesota Alliance of Local History Museums" class="malhm-logo" src="assets/malhm-logo-white-transparent.png"/></a>
+<address><div>Minnesota Alliance of Local History Museums<br/>Saint Paul, Minnesota, United States</div><div>(612) 500-7460</div><div>staff@mnhistoryalliance.org</div></address>
+</div>
+<div class="news"><h3>Stay connected to local history</h3><p>Get updates about Minnesota history, participating museums and featured collections.</p><form class="news-form" id="footer-subscribe" novalidate=""><input aria-label="Email address for local history updates" autocomplete="email" name="email" placeholder="Enter your email address" required="" type="email"/><button class="btn btn-light" type="submit">Subscribe</button></form><p aria-live="polite" class="news-message" id="footer-subscribe-status" role="status">Newsletter form is a visual preview; no messages will be sent.</p></div>
+</div>
+<nav aria-label="Quick links" class="quick"><div><h4>Explore</h4><ul><li><a href="index.html#hero-search">Search</a></li><li><a href="index.html#discover">Collections</a></li></ul></div><div><h4>Contributors</h4><ul><li><a href="index.html#contributors">Directory</a></li><li><a href="index.html#contributors">Museums</a></li></ul></div><div><h4>Galleries</h4><ul><li><a href="index.html#galleries">Featured</a></li><li><a href="index.html#stories">Stories</a></li></ul></div><div><h4>About</h4><ul><li><a href="about.html">MNCollections</a></li><li><a href="about.html#why-it-matters">Our purpose</a></li></ul></div><div><h4>Help</h4><ul><li><a href="about.html#why-it-matters">Our purpose</a></li><li>Contact</li></ul></div></nav>
+<div class="foot-bottom">
+<span>© 2026 MNCollections website redesign concept · Minnesota Alliance of Local History Museums</span>
+<div class="foot-designer"><img src="assets/compunnel-digital-footer-white.svg" alt="Website designed by Compunnel Digital" width="200" height="40" loading="lazy"/></div>
+</div>
+<div aria-hidden="true" class="watermark"><span class="watermark-fit">HISTORY MUSEUMS</span></div>
+</div>
+</footer>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toastBox=$('#toast');
+function toast(m){if(!toastBox)return;toastBox.textContent=m;toastBox.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toastBox.classList.remove('show'),3200)}
+const navbar=$('#nav');addEventListener('scroll',()=>navbar?.classList.toggle('scrolled',scrollY>8),{passive:true});
+$('#menu')?.addEventListener('click',()=>{const el=$('#links');const show=el.classList.toggle('open');$('#menu').setAttribute('aria-expanded',String(show));});
+$$('.nav .links details').forEach(el=>el.addEventListener('toggle',()=>{if(el.open)$$('.nav .links details').filter(x=>x!==el).forEach(x=>x.open=false)}));
+$$('.split').forEach(el=>{const t=el.textContent.trim();el.setAttribute('aria-label',t);el.innerHTML=t.split(/\s+/).map((w,i)=>`<span class="word" aria-hidden="true" style="--i:${i}">${w}</span>`).join(' ')});
+if('IntersectionObserver' in window){const ob=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;ob.unobserve(e.target);const el=e.target;const end=Number(el.dataset.to);if(reduced)return;const suffix=el.dataset.suffix||'';const begin=performance.now();function step(t){let p=Math.min((t-begin)/1200,1);el.textContent=Math.round(end*(1-(1-p)**3))+suffix;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}),{threshold:.5});$$('[data-to]').forEach(x=>ob.observe(x))}
+const messages={
+ details:{t:'One statewide place to explore collections',b:'MNCollections brings published collection records together from participating museums and historical organizations throughout Minnesota.'},
+ stories:{t:'Find people, places and objects',b:'Search historical artifacts, photographs, documents and related entities through a unified discovery experience.'},
+ impact:{t:'Designed for accessible discovery',b:'The redesign prioritizes clear navigation, usable search results and WCAG 2.2 Level AA accessibility requirements.'}
+};
+$$('[role="tab"]').forEach(tab=>tab.addEventListener('click',()=>{ $$('[role="tab"]').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));const p=messages[tab.dataset.panel];if(!p)return;$('#tab-title').textContent=p.t;$('#tab-text').textContent=p.b;}));
+const rail=$('#rail');if(rail){const cards=$$('.story',rail);function step(){return (cards[0]?.offsetWidth||280)+20}function count(){const i=Math.min(cards.length-1,Math.round(rail.scrollLeft/step()));$('#rail-count').textContent=String(i+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0')}rail.addEventListener('scroll',()=>requestAnimationFrame(count),{passive:true});$('#prev')?.addEventListener('click',()=>rail.scrollBy({left:-step(),behavior:reduced?'instant':'smooth'}));$('#next')?.addEventListener('click',()=>rail.scrollBy({left:step(),behavior:reduced?'instant':'smooth'}));}
+const searchForm=$('#hero-search'); if(searchForm){searchForm.addEventListener('submit',e=>{e.preventDefault();const inp=searchForm.querySelector('input');const q=inp.value.trim();window.location.href='index.html#hero-search';});}
+$$('[data-goto-results]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();window.location.href='about.html';}));
+const categories=$$('[data-category]');let selectedCategory='Photographs';
+categories.forEach(b=>b.addEventListener('click',()=>{categories.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));selectedCategory=b.dataset.category;const input=$('#custom');if(input)input.placeholder='Search '+selectedCategory.toLowerCase()+' by keyword'}));
+$('#give')?.addEventListener('click',()=>{const q=$('#custom')?.value?.trim()||'';window.location.href='about.html'+(q?'?q='+encodeURIComponent(q):'')});
+$('#news')?.addEventListener('submit',e=>{e.preventDefault();const p=$('#news-msg');if(p)p.textContent='To receive updates, visit the official Minnesota Alliance of Local History Museums website.';});
+$('#legacy-play')?.addEventListener('click',()=>$('#more')?.scrollIntoView({behavior:reduced?'auto':'smooth'}));
+$$('button.go').forEach(b=>b.addEventListener('click',()=>{window.location.href='about.html'}));
+
+// About page content is informational; no sample search results or filtering is displayed.
+</script><span aria-hidden="true" class="accessibility-floating" title="Accessibility symbol (visual only)"><svg aria-hidden="true" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="4" r="2"></circle><path d="M4 9h16M12 7v7m0 0-5 7m5-7 5 7"></path></svg></span><script>
+// Local-only newsletter UI: no remote submission or false subscription confirmation.
+const footerSubscribe = document.querySelector('#footer-subscribe');
+if (footerSubscribe) {
+ footerSubscribe.addEventListener('submit', function(event) {
+   event.preventDefault();
+   const input = footerSubscribe.querySelector('input[type="email"]');
+   const status = document.querySelector('#footer-subscribe-status');
+   if (!input || !status) return;
+   if (!input.checkValidity()) {
+     status.textContent = 'Please enter a valid email address.';
+     input.focus();
+   } else {
+     status.textContent = 'This is a design preview. No email was submitted.';
+   }
+ });
+}
+// Fit HISTORY MUSEUMS precisely across the available footer content width.
+function resizeFooterWatermark() {
+ document.querySelectorAll('.watermark .watermark-fit').forEach(textEl => {
+   const parent = textEl.parentElement;
+   if (!parent) return;
+   textEl.style.fontSize = '120px';
+   const measuredWidth = textEl.getBoundingClientRect().width;
+   const available = parent.clientWidth;
+   if (measuredWidth > 0 && available > 0) {
+     const fontSize = Math.max(14, Math.min(220, Math.floor(120 * available * .985 / measuredWidth)));
+     textEl.style.fontSize = fontSize + 'px';
+   }
+ });
+}
+window.addEventListener('resize', resizeFooterWatermark, {passive:true});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(resizeFooterWatermark);
+window.requestAnimationFrame(resizeFooterWatermark);
+</script><style id="micro-live-v33">
+/* ===== v33: living hero + micro-interactions =====
+   Motion uses the individual `translate` / `scale` properties so it does not
+   collide with the `transform:none !important` rule in stable-hero-photo-v7.
+   Everything motion-related is off for reduced-motion users. */
+
+/* Hero photo: slow, gentle drift and breathing zoom (both pages) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero:not(.hero-about) .hero-ground,
+  .hero.hero-about .hero-ground {
+    inset: -4% !important;
+    animation: heroLive 18s ease-in-out infinite alternate !important;
+    will-change: translate, scale;
+  }
+  @keyframes heroLive {
+    0%   { translate: -1.2% -0.8%; scale: 1.02; }
+    50%  { translate: 1.0% 0.6%;   scale: 1.055; }
+    100% { translate: -0.4% 1.0%;  scale: 1.03; }
+  }
+}
+
+/* Buttons */
+.btn, .give, .text-link, .icon-btn, .dropdown-links a, [role="tab"], .seg button {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn {
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background-color .25s, color .25s, border-color .25s, translate .3s var(--ease);
+  }
+  .btn:active { transform: scale(.97); }
+  .give { transition: transform .25s var(--ease), box-shadow .25s var(--ease), translate .3s var(--ease); }
+  .give:active { transform: scale(.97); }
+  .btn .arr { transition: transform .3s var(--ease); }
+  .text-link { transition: color .3s, translate .3s var(--ease); }
+  .text-link:hover { translate: 3px 0; }
+  .icon-btn { transition: background .2s, color .2s, scale .3s var(--ease); }
+  .icon-btn:hover { scale: 1.08; }
+  .icon-btn:active { scale: .94; }
+  .dropdown-links a { transition: background .2s, color .2s, translate .25s var(--ease); }
+  .dropdown-links a:hover { translate: 4px 0; }
+  .seg button { transition: background .3s, color .3s, scale .2s var(--ease); }
+  .seg button:active { scale: .96; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover { box-shadow: 0 12px 26px -12px rgba(50,8,80,.55); }
+  .btn:hover .arr { transform: translateX(4px); }
+  .stat, .m, .story, .show { transition: translate .4s var(--ease), box-shadow .4s var(--ease), transform .5s var(--ease); }
+  .stat:hover { translate: 0 -5px; box-shadow: 0 34px 56px -34px rgba(18,14,51,.9); }
+  .show:hover { box-shadow: 0 1px 0 var(--line), 0 40px 60px -36px rgba(26,23,52,.75); }
+  .show:hover .art { transform: scale(1.04); }
+  .show .art { transition: transform 1.2s var(--ease); }
+  .story:hover { translate: 0 -4px; }
+  .m:hover { translate: 0 -4px; }
+  .m:hover img { filter: brightness(1.05); }
+}
+
+/* Keyboard focus, clearly visible for everyone */
+:focus-visible {
+  outline: 3px solid #B078D8;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.hero :focus-visible, .footer :focus-visible { outline-color: #E0C8F0; }
+input[type="search"]:focus, input[type="email"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(176,120,216,.35);
+}
+</style>
+<script id="micro-live-v33-js">
+/* Magnetic pull for .magnetic controls (pointer devices only, motion allowed) */
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.magnetic').forEach(function (el) {
+    el.addEventListener('pointermove', function (e) {
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width / 2) * 0.16;
+      var y = (e.clientY - r.top - r.height / 2) * 0.22;
+      el.style.translate = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
+    });
+    el.addEventListener('pointerleave', function () { el.style.translate = ''; });
+  });
+})();
+</script>
+
+<style id="type-system-v34">
+/* ===== v34: one type scale across both pages ===== */
+/* H1: all page titles uppercase like the homepage hero */
+.hero-about h1 { text-transform: uppercase; letter-spacing: .01em; }
+/* H2: section titles share one size */
+#platform { font-size: clamp(30px, 3.6vw, 46px) !important; }
+/* H3: large feature titles bold and identical weight */
+#story-h { font-weight: 700 !important; }
+/* H3: card titles share one size (22px desktop) */
+.show-cards .body h3, #feat-h { font-size: 22px !important; }
+/* Panel / footer titles share one size (24px) */
+.news h3 { font-size: 24px !important; }
+/* Card descriptions share one size (15px) */
+.cap p, .show .body p, #more p { font-size: 15px !important; line-height: 1.55; }
+/* Body intro copy: one size on desktop */
+@media (min-width: 901px) {
+  .copy, #why-it-matters .copy { font-size: 17px !important; }
+}
+</style>
+<style id="hero-readability-v35">
+/* ===== v35: easier-to-read hero text (both pages) ===== */
+.hero .eyebrow {
+  color: #ffffff !important;
+  text-shadow: 0 1px 10px rgba(14, 4, 26, .65);
+  letter-spacing: .16em;
+}
+.hero h1 {
+  color: #ffffff;
+  text-shadow: 0 3px 22px rgba(14, 4, 26, .55), 0 1px 3px rgba(14, 4, 26, .35);
+}
+.hero .lede {
+  color: #ffffff !important;
+  font-size: clamp(18px, 2.2vw, 21px);
+  font-weight: 500;
+  line-height: 1.6;
+  text-shadow: 0 2px 14px rgba(14, 4, 26, .7), 0 1px 2px rgba(14, 4, 26, .45);
+}
+.hero .hero-breadcrumbs,
+.hero .hero-breadcrumbs a {
+  text-shadow: 0 1px 8px rgba(14, 4, 26, .7);
+}
+/* Slightly deeper wash directly behind the text column only on wide screens */
+@media (min-width: 901px) {
+  .hero::after {
+    background: linear-gradient(90deg, rgba(20, 3, 36, .9) 0%, rgba(40, 6, 66, .66) 50%, rgba(50, 8, 80, .4) 100%) !important;
+  }
+}
+</style>
+</body>
+</html>

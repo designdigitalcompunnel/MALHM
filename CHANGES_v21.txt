@@ -1,0 +1,9 @@
+Version 21 — Refocused about.html as a true About MNCollections page.
+
+- Replaced Search Results hero and sample record/filter UI with About hero, mission narrative and six themes.
+- Rewrote the following sections to focus on museum contributors, statewide local heritage, community access and storytelling.
+- Retained the established layout, cards, images, SVG decoration, page sections, brand colors, fonts and footer.
+- Kept the About navigation highlighted and repaired outdated Search Results links.
+- Homepage prototype searches no longer send visitors to the About page as if it were search results; they display a transparent local-demo notice instead.
+- Added appropriate page title and metadata; removed result-filter script.
+- No external links to the existing live website.

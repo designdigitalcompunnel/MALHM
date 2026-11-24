@@ -1,0 +1,1 @@
+Version 14: Replaced homepage hero gradient overlay with uniform deep-purple transparent layer (rgba(50,8,80,0.64)) on all screen sizes. Other sections, about page, imagery, and structure remain unchanged.

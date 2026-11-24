@@ -1,0 +1,8 @@
+Version 24 based on Version 23:
+- About-page hero received subtle black image overlay to improve text clarity while retaining purple brand tone.
+- Why local history matters gained a black overlay over the barn and statue photo for readability.
+- Connecting Minnesota's local history description shortened to approximately two desktop lines.
+- Stronger deep-plum gradient from the bottom of all six mission photo tiles.
+- History is for everyone card has a discreet Minnesota silhouette extracted from the provided organization logo.
+- Local history, shared stories historic photograph transitions from original B&W to an estimated, muted colorized version on hover/focus. The colorization is illustrative and not a historically verified original.
+- Homepage and the other About-page elements remain unchanged.

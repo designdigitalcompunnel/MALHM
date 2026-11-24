@@ -1,0 +1,4 @@
+MNCollections Version 18
+- Footer archive/historic SVG pattern opacity reduced by 80% from Version 17 on both pages.
+- Desktop: 0.20 to 0.04. Mobile: 0.17 to 0.034.
+- No changes to logo, typography, layout, other imagery or navigation.

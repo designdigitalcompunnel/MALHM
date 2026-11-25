@@ -1,6 +1,1 @@
-Version 35 (based on Version 34)
-
-- Hero readability on both pages: eyebrow, headline, and intro text are pure white with soft text shadows.
-- Hero intro text slightly larger (18-21px) and medium weight with more line spacing.
-- Slightly deeper dark wash behind the text on desktop (901px and wider) for contrast.
-- No layout, copy, image movement, or script changes.
+Version 35: Browser tab titles on homepage and About page updated to "Minnesota Alliance of Local History Museums" with official title capitalization. Other design and content unchanged.

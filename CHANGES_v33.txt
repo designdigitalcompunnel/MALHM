@@ -1,6 +1,10 @@
-Version 33 (based on Version 32)
+Version 33 — Homepage ornament visibility and footer wordmark alignment
 
-- Hero photo on both pages now has a slow, gentle drift and breathing zoom (18s loop), plus a soft light sweep every ~9s. Uses the CSS translate/scale properties, so the existing fallback background stays visible. Disabled for users with reduced-motion settings.
-- Micro-interactions: buttons lift on hover and press in on click; the search button arrow nudges; header icons scale on hover; magnetic pull on primary buttons (pointer devices only); cards, stats and tiles lift on hover; dropdown links and text links shift on hover; tabs and segmented controls get press feedback.
-- Keyboard focus rings are clearly visible on all controls.
-- No layout, copy, colour or content changes.
+Homepage
+- Increased the decorative antique-gold flourish visibility in Discover MNCollections (opacity 26%) and Featured historical galleries (opacity 23%).
+- Kept flourishes behind content and hidden on narrower layouts, as in Version 32.
+
+Both pages
+- Updated the footer HISTORY MUSEUMS text fitting algorithm to use virtually the full width of the existing page grid (2px total safety margin), including precise fractional font sizes rather than rounding down.
+- Left-aligned the giant footer wordmark within the same grid so its left and right ends align with the content above.
+- No changes to colors, typefaces, cards, layout, navigation or images.

@@ -982,6 +982,27 @@ body .donate-card .amounts button[aria-pressed="true"],body .donate-card .freq b
  .nav-right .static-icon.theme-static svg{width:23px;height:23px}
 }
 </style>
+
+<style id="v33-footer-watermark-grid-fit">
+/* Align both ends of HISTORY MUSEUMS with the existing footer content grid. */
+.footer .watermark {width:100%;margin-inline:0;text-align:left;overflow:hidden;}
+.footer .watermark .watermark-fit {display:inline-block;white-space:nowrap;vertical-align:bottom;}
+</style>
+<style id="v34-antique-flourish-visibility">
+/* Increase visibility and saturation so the decorative PNG reads clearly,
+   while still remaining a subtle background accent behind the content. */
+#discover .bento::after {
+  opacity:.40 !important;
+  filter:saturate(1.35) brightness(.98) contrast(1.18) sepia(.14) !important;
+}
+#galleries .stories-grid::after {
+  opacity:.36 !important;
+  filter:saturate(1.35) brightness(.98) contrast(1.18) sepia(.14) !important;
+}
+@media(max-width:900px) {
+  #discover .bento::after,#galleries .stories-grid::after {display:none;}
+}
+</style>
 </head>
 <body>
 <header class="nav" id="nav">
@@ -1069,15 +1090,15 @@ body .donate-card .amounts button[aria-pressed="true"],body .donate-card .freq b
 <div class="wrap shows">
 <div class="rv">
 <h2 id="shows-h">Local history institutions</h2>
-<p class="copy" style="margin:18px 0 26px;max-width:32ch">Historical societies and museums preserve Minnesota’s local history. Participating institutions choose which collection records to publish online.</p>
+<p class="copy" style="margin:18px 0 26px;max-width:32ch">Historical societies and museums preserve Minnesota's local history. Participating institutions choose which collection records to publish online.</p>
 <a class="text-link" href="about.html#more">About contributors →</a>
 </div>
 <div class="show-cards">
 <article class="show rv"><div aria-label="Exterior of Hennepin History Museum" class="art real-art home-contributor-hennepin" role="img"><span class="chip">Museum</span></div>
 <div class="body"><time>Local history institution</time><h3>Hennepin History Museum</h3><p>Local history and collections</p><button aria-label="Learn about Minnesota history institutions" class="go" type="button">→</button></div></article>
-<article class="show rv"><div aria-label="Clay County Historical Society area building" class="art real-art home-contributor-clay" role="img"><span class="chip">Historical society</span></div>
+<article class="show rv"><div aria-label="Clay County Historical Society area building" class="art real-art home-contributor-clay" role="img"><span class="chip">History</span></div>
 <div class="body"><time>Local history institution</time><h3>Clay County Historical Society</h3><p>Regional history and artifacts</p><button aria-label="Learn about Minnesota history institutions" class="go" type="button">→</button></div></article>
-<article class="show rv"><div aria-label="Douglas County Historical Society house and sign" class="art real-art home-contributor-douglas" role="img"><span class="chip">Historical society</span></div>
+<article class="show rv"><div aria-label="Douglas County Historical Society house and sign" class="art real-art home-contributor-douglas" role="img"><span class="chip">History</span></div>
 <div class="body"><time>Local history institution</time><h3>Douglas County Historical Society</h3><p>Records from community collections</p><button aria-label="Learn about Minnesota history institutions" class="go" type="button">→</button></div></article>
 </div>
 </div>
@@ -1210,153 +1231,19 @@ function resizeFooterWatermark() {
  document.querySelectorAll('.watermark .watermark-fit').forEach(textEl => {
    const parent = textEl.parentElement;
    if (!parent) return;
+   // Measure at a stable baseline, then fit the lettering to the content grid
+   // with just 2px of safety room, regardless of screen width or font loading.
    textEl.style.fontSize = '120px';
    const measuredWidth = textEl.getBoundingClientRect().width;
-   const available = parent.clientWidth;
+   const available = Math.max(0, parent.clientWidth - 2);
    if (measuredWidth > 0 && available > 0) {
-     const fontSize = Math.max(14, Math.min(220, Math.floor(120 * available * .985 / measuredWidth)));
-     textEl.style.fontSize = fontSize + 'px';
+     const fontSize = Math.max(12, Math.min(220, 120 * available / measuredWidth));
+     textEl.style.fontSize = fontSize.toFixed(3) + 'px';
    }
  });
 }
 window.addEventListener('resize', resizeFooterWatermark, {passive:true});
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(resizeFooterWatermark);
 window.requestAnimationFrame(resizeFooterWatermark);
-</script><style id="micro-live-v33">
-/* ===== v33: living hero + micro-interactions =====
-   Motion uses the individual `translate` / `scale` properties so it does not
-   collide with the `transform:none !important` rule in stable-hero-photo-v7.
-   Everything motion-related is off for reduced-motion users. */
-
-/* Hero photo: slow, gentle drift and breathing zoom (both pages) */
-@media (prefers-reduced-motion: no-preference) {
-  .hero:not(.hero-about) .hero-ground,
-  .hero.hero-about .hero-ground {
-    inset: -4% !important;
-    animation: heroLive 18s ease-in-out infinite alternate !important;
-    will-change: translate, scale;
-  }
-  @keyframes heroLive {
-    0%   { translate: -1.2% -0.8%; scale: 1.02; }
-    50%  { translate: 1.0% 0.6%;   scale: 1.055; }
-    100% { translate: -0.4% 1.0%;  scale: 1.03; }
-  }
-}
-
-/* Buttons */
-.btn, .give, .text-link, .icon-btn, .dropdown-links a, [role="tab"], .seg button {
-  -webkit-tap-highlight-color: transparent;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .btn {
-    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background-color .25s, color .25s, border-color .25s, translate .3s var(--ease);
-  }
-  .btn:active { transform: scale(.97); }
-  .give { transition: transform .25s var(--ease), box-shadow .25s var(--ease), translate .3s var(--ease); }
-  .give:active { transform: scale(.97); }
-  .btn .arr { transition: transform .3s var(--ease); }
-  .text-link { transition: color .3s, translate .3s var(--ease); }
-  .text-link:hover { translate: 3px 0; }
-  .icon-btn { transition: background .2s, color .2s, scale .3s var(--ease); }
-  .icon-btn:hover { scale: 1.08; }
-  .icon-btn:active { scale: .94; }
-  .dropdown-links a { transition: background .2s, color .2s, translate .25s var(--ease); }
-  .dropdown-links a:hover { translate: 4px 0; }
-  .seg button { transition: background .3s, color .3s, scale .2s var(--ease); }
-  .seg button:active { scale: .96; }
-}
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .btn:hover { box-shadow: 0 12px 26px -12px rgba(50,8,80,.55); }
-  .btn:hover .arr { transform: translateX(4px); }
-  .stat, .m, .story, .show { transition: translate .4s var(--ease), box-shadow .4s var(--ease), transform .5s var(--ease); }
-  .stat:hover { translate: 0 -5px; box-shadow: 0 34px 56px -34px rgba(18,14,51,.9); }
-  .show:hover { box-shadow: 0 1px 0 var(--line), 0 40px 60px -36px rgba(26,23,52,.75); }
-  .show:hover .art { transform: scale(1.04); }
-  .show .art { transition: transform 1.2s var(--ease); }
-  .story:hover { translate: 0 -4px; }
-  .m:hover { translate: 0 -4px; }
-  .m:hover img { filter: brightness(1.05); }
-}
-
-/* Keyboard focus, clearly visible for everyone */
-:focus-visible {
-  outline: 3px solid #B078D8;
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-.hero :focus-visible, .footer :focus-visible { outline-color: #E0C8F0; }
-input[type="search"]:focus, input[type="email"]:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(176,120,216,.35);
-}
-</style>
-<script id="micro-live-v33-js">
-/* Magnetic pull for .magnetic controls (pointer devices only, motion allowed) */
-(function () {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (!matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll('.magnetic').forEach(function (el) {
-    el.addEventListener('pointermove', function (e) {
-      var r = el.getBoundingClientRect();
-      var x = (e.clientX - r.left - r.width / 2) * 0.16;
-      var y = (e.clientY - r.top - r.height / 2) * 0.22;
-      el.style.translate = x.toFixed(1) + 'px ' + y.toFixed(1) + 'px';
-    });
-    el.addEventListener('pointerleave', function () { el.style.translate = ''; });
-  });
-})();
-</script>
-
-<style id="type-system-v34">
-/* ===== v34: one type scale across both pages ===== */
-/* H1: all page titles uppercase like the homepage hero */
-.hero-about h1 { text-transform: uppercase; letter-spacing: .01em; }
-/* H2: section titles share one size */
-#platform { font-size: clamp(30px, 3.6vw, 46px) !important; }
-/* H3: large feature titles bold and identical weight */
-#story-h { font-weight: 700 !important; }
-/* H3: card titles share one size (22px desktop) */
-.show-cards .body h3, #feat-h { font-size: 22px !important; }
-/* Panel / footer titles share one size (24px) */
-.news h3 { font-size: 24px !important; }
-/* Institution cards: arrow buttons align on one baseline */
-.show .body { display: flex; flex-direction: column; }
-.show .go { margin-top: auto; align-self: flex-end; }
-/* Card descriptions share one size (15px) */
-.cap p, .show .body p, #more p { font-size: 15px !important; line-height: 1.55; }
-/* Body intro copy: one size on desktop */
-@media (min-width: 901px) {
-  .copy, #why-it-matters .copy { font-size: 17px !important; }
-}
-</style>
-<style id="hero-readability-v35">
-/* ===== v35: easier-to-read hero text (both pages) ===== */
-.hero .eyebrow {
-  color: #ffffff !important;
-  text-shadow: 0 1px 10px rgba(14, 4, 26, .65);
-  letter-spacing: .16em;
-}
-.hero h1 {
-  color: #ffffff;
-  text-shadow: 0 3px 22px rgba(14, 4, 26, .55), 0 1px 3px rgba(14, 4, 26, .35);
-}
-.hero .lede {
-  color: #ffffff !important;
-  font-size: clamp(18px, 2.2vw, 21px);
-  font-weight: 500;
-  line-height: 1.6;
-  text-shadow: 0 2px 14px rgba(14, 4, 26, .7), 0 1px 2px rgba(14, 4, 26, .45);
-}
-.hero .hero-breadcrumbs,
-.hero .hero-breadcrumbs a {
-  text-shadow: 0 1px 8px rgba(14, 4, 26, .7);
-}
-/* Slightly deeper wash directly behind the text column only on wide screens */
-@media (min-width: 901px) {
-  .hero::after {
-    background: linear-gradient(90deg, rgba(20, 3, 36, .9) 0%, rgba(40, 6, 66, .66) 50%, rgba(50, 8, 80, .4) 100%) !important;
-  }
-}
-</style>
-</body>
+</script></body>
 </html>
